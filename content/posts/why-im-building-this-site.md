@@ -12,7 +12,7 @@ This site is my attempt at that trail.
 ## What goes here
 
 - **Writeups** — CTF and lab walkthroughs, written so a smart person who isn't me can follow them.
-- **Blog** — shorter posts about what I'm learning, tools I'm trying, and ideas I'm chewing on.
+- **Blog** — Posts about what I'm learning, tools I'm trying, and ideas I'm chewing on.
 - **Achievements** — a single place to track certifications, projects, and competition results.
 
 ## What I'm not going to do
