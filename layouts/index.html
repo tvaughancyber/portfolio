@@ -1,0 +1,64 @@
+{{ define "main" }}
+<section class="hero">
+  <div class="hero-tag">// offensive security · penetration testing · research</div>
+  <h1 class="hero-title">
+    Breaking things,<br>
+    <span class="hero-accent">writing it down.</span>
+  </h1>
+  <p class="hero-lede">
+    I'm {{ .Site.Params.author }} — I find vulnerabilities, document them carefully, and turn what I learn into writeups others can use.
+    This site is where I keep my notes, research, and an evolving record of what I've worked on.
+  </p>
+  <div class="hero-cta">
+    <a href="/writeups/" class="btn btn-primary">Read writeups →</a>
+    <a href="/about/" class="btn btn-ghost">About me</a>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-head">
+    <h2 class="section-title">Recent writeups</h2>
+    <a href="/writeups/" class="section-link">all writeups →</a>
+  </div>
+  <div class="post-list">
+    {{ range first 4 (where .Site.RegularPages "Section" "writeups") }}
+      <a href="{{ .Permalink }}" class="post-card">
+        <div class="post-meta">
+          <time>{{ .Date.Format "2006.01.02" }}</time>
+          {{ with .Params.tags }}<span class="post-tags">{{ delimit . " · " }}</span>{{ end }}
+        </div>
+        <h3 class="post-title">{{ .Title }}</h3>
+        {{ with .Params.summary }}<p class="post-summary">{{ . }}</p>{{ end }}
+      </a>
+    {{ else }}
+      <div class="empty-state">
+        <code>$ ls writeups/</code>
+        <p>No writeups yet. The first one will live here.</p>
+      </div>
+    {{ end }}
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-head">
+    <h2 class="section-title">Recent posts</h2>
+    <a href="/posts/" class="section-link">all posts →</a>
+  </div>
+  <div class="post-list">
+    {{ range first 3 (where .Site.RegularPages "Section" "posts") }}
+      <a href="{{ .Permalink }}" class="post-card">
+        <div class="post-meta">
+          <time>{{ .Date.Format "2006.01.02" }}</time>
+        </div>
+        <h3 class="post-title">{{ .Title }}</h3>
+        {{ with .Params.summary }}<p class="post-summary">{{ . }}</p>{{ end }}
+      </a>
+    {{ else }}
+      <div class="empty-state">
+        <code>$ ls posts/</code>
+        <p>No posts yet.</p>
+      </div>
+    {{ end }}
+  </div>
+</section>
+{{ end }}

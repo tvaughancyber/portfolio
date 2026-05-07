@@ -1,0 +1,47 @@
+baseURL = "/"
+canonifyURLs = false
+relativeURLs = true
+languageCode = "en-us"
+title = "Tyler — Offensive Security"
+
+[params]
+  description = "Penetration testing writeups, research, and notes."
+  author = "Tyler"
+  github = "https://github.com/tvaughancyber"
+  linkedin = "https://linkedin.com/in/tvaughan-cyber"
+  email = "you@example.com"
+
+[markup.highlight]
+  noClasses = false
+  style = "github-dark"
+  lineNos = true
+  codeFences = true
+
+[markup.goldmark.renderer]
+  unsafe = true
+
+[menu]
+  [[menu.main]]
+    name = "Writeups"
+    url = "/writeups/"
+    weight = 1
+  [[menu.main]]
+    name = "Blog"
+    url = "/posts/"
+    weight = 2
+  [[menu.main]]
+    name = "About"
+    url = "/about/"
+    weight = 3
+  [[menu.main]]
+    name = "Achievements"
+    url = "/achievements/"
+    weight = 4
+
+[outputs]
+  home = ["HTML", "RSS"]
+  section = ["HTML", "RSS"]
+
+[permalinks]
+  posts = "/blog/:slug/"
+  writeups = "/writeups/:slug/"

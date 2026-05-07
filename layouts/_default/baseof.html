@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} — {{ .Site.Title }}{{ end }}</title>
+  <meta name="description" content="{{ if .Description }}{{ .Description }}{{ else }}{{ .Site.Params.description }}{{ end }}">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="{{ "/css/style.css" | relURL }}">
+  {{ with .OutputFormats.Get "RSS" }}
+    <link rel="alternate" type="application/rss+xml" href="{{ .RelPermalink }}" title="{{ $.Site.Title }}">
+  {{ end }}
+</head>
+<body>
+  <div class="grain"></div>
+
+  <header class="site-header">
+    <div class="container">
+      <a href="{{ "/" | relURL }}" class="brand">
+        <span class="brand-prompt">$</span>
+        <span class="brand-name">{{ .Site.Params.author }}</span>
+        <span class="brand-cursor">_</span>
+      </a>
+      <nav class="site-nav">
+        {{ range .Site.Menus.main }}
+          <a href="{{ .URL | relURL }}" class="nav-link {{ if $.IsMenuCurrent "main" . }}active{{ end }}">{{ .Name }}</a>
+        {{ end }}
+      </nav>
+    </div>
+  </header>
+
+  <main class="site-main">
+    <div class="container">
+      {{ block "main" . }}{{ end }}
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-left">
+        <span class="footer-prompt">$</span> echo "© {{ now.Format "2006" }} {{ .Site.Params.author }}"
+      </div>
+      <div class="footer-links">
+        <a href="{{ .Site.Params.github }}" target="_blank" rel="noopener">github</a>
+        <a href="{{ .Site.Params.linkedin }}" target="_blank" rel="noopener">linkedin</a>
+        <a href="mailto:{{ .Site.Params.email }}">email</a>
+        <a href="{{ "/index.xml" | relURL }}">rss</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
