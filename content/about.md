@@ -1,6 +1,6 @@
 ---
 title: "About"
-description: "Who I am and what I work on."
+description: "Background, current focus, and the fastest way to reach me."
 layout: "about"
 ---
 
