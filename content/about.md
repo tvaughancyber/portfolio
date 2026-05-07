@@ -4,6 +4,8 @@ description: "Background, current focus, and the fastest way to reach me."
 layout: "about"
 ---
 
+## Who am I
+
 I'm Tyler Vaughan — an aspiring offensive security professional focused on penetration testing and vulnerability research.
 
 ## What I do
@@ -20,7 +22,7 @@ Anyone can run a tool. The harder skill is explaining *why* a vulnerability matt
 - Active Directory attack paths
 - AI/ML Red Teaming 
 
-## Background
+## More about me
 
 If you want to dig deeper into my background, certifications, and competition results you can find that here:
 
