@@ -1,6 +1,6 @@
 ---
 title: "Why I'm building this site"
-date: 2025-05-01
+date: 2026-05-07
 summary: "A short note on why I'm investing in a personal site as I push toward an offensive security career."
 draft: false
 ---
@@ -13,7 +13,7 @@ This site is my attempt at that trail.
 
 - **Writeups** — CTF and lab walkthroughs, written so a smart person who isn't me can follow them.
 - **Blog** — shorter posts about what I'm learning, tools I'm trying, and ideas I'm chewing on.
-- **Achievements** — a single place to track certifications and competition results.
+- **Achievements** — a single place to track certifications, projects, and competition results.
 
 ## What I'm not going to do
 

@@ -3,7 +3,7 @@ title: "HTB: [Machine Name] — Walkthrough"
 date: 2025-05-01
 summary: "A realistic-feeling AD environment with a credential-spray foothold and a Kerberos-based path to Domain Admin."
 tags: ["htb", "active-directory", "kerberos"]
-draft: false
+draft: true
 ---
 
 > Replace this file with your real writeup. The structure below is a starting template I find useful — feel free to reorganize.
