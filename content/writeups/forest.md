@@ -3,7 +3,7 @@ title: "HTB: Forest — AS-REP Roasting to Domain Admin"
 date: 2026-05-08
 summary: "A walkthrough of HackTheBox Forest, demonstrating the canonical AS-REP roast → BloodHound → DCSync attack chain on a misconfigured Active Directory environment."
 tags: ["htb", "active-directory", "kerberos", "bloodhound"]
-draft: true
+draft: false
 ---
 
 Forest is a retired HackTheBox machine that simulates a small Active Directory environment with a misconfigured service account and an over-privileged Exchange security group.
