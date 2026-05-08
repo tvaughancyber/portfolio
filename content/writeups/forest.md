@@ -145,7 +145,15 @@ $ nxc winrm htb.local -u svc-alfresco -p s3rvice
 ```
 Looks like we can remote in with svc-alfresco. Let's grab that user flag.
 
-![Connecting via winrm to grab the user flag](/img/writeups/forest/forest-evil-winrm-user.png)
+```bash
+$ evil-winrm -i htb.local -u 'svc-alfresco' -p 's3rvice'
+                                        
+Evil-WinRM shell v3.5                                        
+Info: Establishing connection to remote endpoint
+
+*Evil-WinRM* PS C:\Users\svc-alfresco\Documents> type ..\Desktop\user.txt
+f6db3..[REDACTED]..04e285cb
+```
 
 ## Finding the Path to Domain Admin
 Our next step is to figure out what we have access to and how we can get to Domain Admin. Since we have a set of working credentials we can use BloodHound to help us enumerate the domain.
@@ -246,7 +254,7 @@ These remediations split between *prevention* (close the door) and *detection* (
 
 ### What this exercise reinforced for me
 
-Most people, including myself, are guilty of running commands on HTB machines without fully understanding *why*. Upon rooting this box and documenting the writeup, I realized I could talk all day about my methodology and why I chose to run each command. What I didn't realize was I could not explain why the command I ran worked. This exercise has reinforced my understanding of many protocols including RPC and Kerberos. I look forward to further investigating other attack chains and documenting them in future writeups.
+Most people, including myself, are guilty of running commands on HTB machines without fully understanding why. Upon rooting this box and documenting the writeup, I realized I could talk all day about my methodology and why I chose to run each command. What I didn't realize was I could not explain why the command I ran worked. This exercise has reinforced my understanding of many protocols including RPC and Kerberos. I look forward to further investigating other attack chains and documenting them in future writeups.
 
 This box also reinforced how much of the attack chain is the system working as designed. AS-REP without pre-auth is a Kerberos compatibility option. DCSync is the literal protocol DCs use to stay in sync. The Exchange Windows Permissions group exists because Exchange genuinely needs those rights to function. None of these are exploits in the traditional sense. They're features being used against an administrator who didn't know enough about the design to configure them differently.
 
