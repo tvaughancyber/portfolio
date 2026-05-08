@@ -14,7 +14,7 @@ title = "Curiosity, with a methodology"
 [markup.highlight]
   noClasses = false
   style = "github-dark"
-  lineNos = true
+  lineNos = false
   codeFences = true
 
 [markup.goldmark.renderer]
