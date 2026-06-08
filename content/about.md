@@ -6,11 +6,11 @@ layout: "about"
 
 ## Who am I
 
-I'm Tyler Vaughan — an aspiring offensive security professional focused on penetration testing and vulnerability research.
+My name is Tyler Vaughan. I am an aspiring offensive security professional focused on penetration testing and vulnerability research.
 
 ## What I do
 
-I spend most of my time on hands-on security work: testing web applications (*Legally*), working through CTF challenges, and digging into how systems break under pressure. Focusing on the *recon → exploit → document* workflow and building on the lessons from every engagement.
+I spend most of my time on hands-on security work: testing web applications (*Legally*), working through CTF challenges, and digging into how systems break. Focusing on the *recon → exploit → document* workflow and building on the lessons from every engagement.
 
 ## Why write-ups
 
@@ -18,7 +18,7 @@ Anyone can run a tool. The harder skill is explaining *why* a vulnerability matt
 
 ## Currently exploring
 
-- Web application security (OWASP Top 10 in depth)
+- Web application security (OWASP Top 10 in depth. Maybe OSWE?)
 - Active Directory attack paths
 - AI/ML Red Teaming 
 
