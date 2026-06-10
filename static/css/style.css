@@ -679,19 +679,26 @@ a.achievement:hover {
   font-size: 14px;
 }
 
+a.achievement {
+  grid-template-columns: 140px 1fr auto;
+}
+
 .achievement-credential {
-  position: absolute;
-  top: 20px;
-  right: 18px;
   font-family: var(--font-mono);
   font-size: 12px;
   color: var(--accent);
+  padding-top: 4px;
+  white-space: nowrap;
 }
 
 @media (max-width: 600px) {
   .achievement {
     grid-template-columns: 1fr;
     gap: 8px;
+  }
+
+  a.achievement {
+    grid-template-columns: 1fr auto;
   }
 }
 
