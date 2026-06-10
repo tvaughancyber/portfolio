@@ -2,7 +2,7 @@ baseURL = "/"
 canonifyURLs = false
 relativeURLs = true
 languageCode = "en-us"
-title = "Curiosity, with a methodology"
+title = "Tyler Vaughan"
 
 [params]
   description = "Penetration testing writeups, research, and notes."
