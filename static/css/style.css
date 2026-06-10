@@ -645,10 +645,18 @@ a { color: inherit; text-decoration: none; }
   border-radius: var(--radius);
   background: var(--bg-card);
   transition: all 0.2s var(--ease);
+  position: relative;
+  text-decoration: none;
+  color: inherit;
 }
 
 .achievement:hover {
   border-color: var(--border-strong);
+  transform: translateY(-2px);
+}
+
+a.achievement:hover {
+  border-color: var(--accent);
   transform: translateY(-2px);
 }
 
@@ -671,6 +679,15 @@ a { color: inherit; text-decoration: none; }
   font-size: 14px;
 }
 
+.achievement-credential {
+  position: absolute;
+  bottom: 14px;
+  right: 18px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--accent);
+}
+
 @media (max-width: 600px) {
   .achievement {
     grid-template-columns: 1fr;
@@ -678,76 +695,6 @@ a { color: inherit; text-decoration: none; }
   }
 }
 
-
-/* ============================================
-   Cerfifications
-   ============================================ */
-.certification-grid {
-  display: grid;
-  gap: 16px;
-  margin-top: 32px;
-}
-
-.certification {
-  display: grid;
-  grid-template-columns: 140px 1fr;
-  gap: 24px;
-  padding: 20px 24px;
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  background: var(--bg-card);
-  transition: all 0.2s var(--ease);
-  position: relative;
-  text-decoration: none;
-  color: inherit;
-}
-
-.certification:hover {
-  border-color: var(--border-strong);
-  transform: translateY(-2px);
-}
-
-.certification-date {
-  font-family: var(--font-mono);
-  font-size: 12px;
-  color: var(--accent);
-  padding-top: 4px;
-}
-
-.certification-title {
-  font-family: var(--font-sans);
-  font-size: 17px;
-  font-weight: 600;
-  margin-bottom: 4px;
-}
-
-.certification-desc {
-  color: var(--text-dim);
-  font-size: 14px;
-}
-
-.cert-hover-label {
-  position: absolute;
-  bottom: 14px;
-  right: 18px;
-  font-family: var(--font-mono);
-  font-size: 12px;
-  color: var(--accent);
-  opacity: 0;
-  transition: opacity 0.2s var(--ease);
-  grid-column: 1 / -1;
-}
-
-.certification:hover .cert-hover-label {
-  opacity: 1;
-}
-
-@media (max-width: 600px) {
-  .certification {
-    grid-template-columns: 1fr;
-    gap: 8px;
-  }
-}
 /* ============================================
    footer
    ============================================ */
