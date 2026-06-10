@@ -681,7 +681,7 @@ a.achievement:hover {
 
 .achievement-credential {
   position: absolute;
-  bottom: 14px;
+  top: 20px;
   right: 18px;
   font-family: var(--font-mono);
   font-size: 12px;
