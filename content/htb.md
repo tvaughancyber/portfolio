@@ -1,5 +1,7 @@
 ---
 title: "HTB Stats"
 description: "HackTheBox activity, season rank, and skill breakdown"
-layout: "htb"
+date: 2026-06-12
 ---
+
+{{< htb-stats >}}

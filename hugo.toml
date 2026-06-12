@@ -37,6 +37,10 @@ title = "Tyler Vaughan"
     name = "Achievements"
     url = "/achievements/"
     weight = 4
+  [[menu.main]]
+    name = "HTB Activity"
+    url = "/htb/"
+    weight = 5
 
 [outputs]
   home = ["HTML", "RSS"]
