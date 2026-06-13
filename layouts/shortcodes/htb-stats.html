@@ -373,18 +373,17 @@
 </div>
 
 <script>
-  const PROXY_BASE  = "https://htb-proxy.tvaughancyber.workers.dev";
-  const HTB_USER_ID = "1448104";
-
-  async function apiFetch(endpoint) {
-    const res = await fetch(`${PROXY_BASE}${endpoint}`);
-    if (!res.ok) throw new Error(`HTTP ${res.status} on ${endpoint}`);
+  // Data is fetched by GitHub Actions every 6 hours and saved as static JSON.
+  // No API calls from the browser — no CORS, no token exposure.
+  async function staticFetch(file) {
+    const res = await fetch(`/htb/${file}`);
+    if (!res.ok) throw new Error(`HTTP ${res.status} fetching ${file}`);
     return res.json();
   }
 
   async function loadProfile() {
     try {
-      const { profile } = await apiFetch("/htb/profile");
+      const { profile } = await staticFetch("profile.json");
       document.getElementById("htbUsername").textContent    = profile.name;
       document.getElementById("htbRankName").textContent    = profile.rank;
       document.getElementById("statUserOwns").textContent   = profile.user_owns;
@@ -410,7 +409,7 @@
 
   async function loadSeason() {
     try {
-      const data = await apiFetch("/htb/season");
+      const data = await staticFetch("season.json");
       const s = data.data || data;
       document.getElementById("seasonRank").textContent = s.rank ? `#${s.rank}` : "—";
       document.getElementById("seasonTier").textContent = s.tier || s.seasonName || "Active Season";
@@ -433,7 +432,7 @@
   async function loadActivity() {
     const list = document.getElementById("pwnList");
     try {
-      const { profile } = await apiFetch("/htb/activity");
+      const { profile } = await staticFetch("activity.json");
       const items = (profile?.activity || []).slice(0, 15);
       if (!items.length) {
         list.innerHTML = '<li class="htb-state-msg">No recent activity found.</li>';
@@ -467,7 +466,7 @@
   async function loadRadar() {
     const msg = document.getElementById("radarMsg");
     try {
-      const data   = await apiFetch("/htb/graph");
+      const data   = await staticFetch("graph.json");
       const points = data?.data?.data || data?.data || [];
       if (!points.length) { msg.textContent = "No radar data available."; return; }
       msg.style.display = "none";
