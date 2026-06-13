@@ -33,24 +33,29 @@ jobs:
             -o static/htb/activity.json
 
       - name: Fetch HTB graph
+        # continue-on-error so a missing endpoint doesn't block the commit
+        continue-on-error: true
         run: |
-          curl -sf \
+          RESPONSE=$(curl -s \
             -H "Authorization: Bearer ${{ secrets.HTB_TOKEN }}" \
             -H "Accept: application/json" \
             -H "User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36" \
             -H "Referer: https://app.hackthebox.com/" \
-            "https://labs.hackthebox.com/api/v4/user/profile/graph/radar/1448104" \
-            -o static/htb/graph.json
+            "https://labs.hackthebox.com/api/v4/user/profile/graph/radar/1448104")
+          echo "Graph response: $RESPONSE"
+          echo "$RESPONSE" > static/htb/graph.json
 
       - name: Fetch HTB season rank
+        continue-on-error: true
         run: |
-          curl -sf \
+          RESPONSE=$(curl -s \
             -H "Authorization: Bearer ${{ secrets.HTB_TOKEN }}" \
             -H "Accept: application/json" \
             -H "User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36" \
             -H "Referer: https://app.hackthebox.com/" \
-            "https://labs.hackthebox.com/api/v4/season/rank/1448104" \
-            -o static/htb/season.json
+            "https://labs.hackthebox.com/api/v4/season/rank/1448104")
+          echo "Season response: $RESPONSE"
+          echo "$RESPONSE" > static/htb/season.json
 
       - name: Commit updated data
         run: |
