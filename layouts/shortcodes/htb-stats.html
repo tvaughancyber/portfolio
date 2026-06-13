@@ -204,67 +204,6 @@
     min-width: 60px;
   }
 
-  .season-panel {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-lg);
-    padding: 24px;
-    margin-bottom: 32px;
-  }
-
-  .season-label {
-    font-family: var(--font-mono);
-    font-size: 0.7rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: var(--text-muted);
-    margin-bottom: 10px;
-  }
-
-  .season-rank-line {
-    display: flex;
-    align-items: baseline;
-    gap: 12px;
-    margin-bottom: 14px;
-  }
-
-  .season-rank-num {
-    font-family: var(--font-mono);
-    font-size: 2.8rem;
-    font-weight: 700;
-    color: var(--htb-green);
-    line-height: 1;
-  }
-
-  .season-rank-tier {
-    font-family: var(--font-mono);
-    font-size: 1rem;
-    color: var(--text-dim);
-  }
-
-  .progress-track {
-    background: var(--surface-2);
-    border-radius: 99px;
-    height: 6px;
-    overflow: hidden;
-    margin-bottom: 8px;
-  }
-
-  .progress-fill {
-    height: 100%;
-    background: linear-gradient(90deg, var(--htb-green), #5fef50);
-    border-radius: 99px;
-    transition: width 1s ease;
-  }
-
-  .progress-labels {
-    display: flex;
-    justify-content: space-between;
-    font-family: var(--font-mono);
-    font-size: 0.7rem;
-    color: var(--text-muted);
-  }
 
   .htb-state-msg {
     font-family: var(--font-mono);
@@ -328,20 +267,6 @@
     </div>
   </div>
 
-  <div class="season-panel">
-    <div class="season-label">Current Season</div>
-    <div class="season-rank-line">
-      <div class="season-rank-num" id="seasonRank">—</div>
-      <div class="season-rank-tier" id="seasonTier">Loading season data...</div>
-    </div>
-    <div class="progress-track">
-      <div class="progress-fill" id="seasonProgress" style="width:0%"></div>
-    </div>
-    <div class="progress-labels">
-      <span id="seasonPoints">0 pts</span>
-      <span id="seasonNext">Next tier</span>
-    </div>
-  </div>
 
   <div class="main-grid">
 
@@ -373,8 +298,6 @@
 </div>
 
 <script>
-  // Data is fetched by GitHub Actions every 6 hours and saved as static JSON.
-  // No API calls from the browser — no CORS, no token exposure.
   async function staticFetch(file) {
     const res = await fetch(`/htb/${file}`);
     if (!res.ok) throw new Error(`HTTP ${res.status} fetching ${file}`);
@@ -398,7 +321,7 @@
       }
       if (profile.avatar) {
         const img = document.createElement("img");
-        img.src       = `https://labs.hackthebox.com${profile.avatar}`;
+        img.src       = "/htb/avatar.png";
         img.alt       = profile.name;
         img.className = "htb-avatar";
         img.onerror   = () => {};
@@ -407,27 +330,6 @@
     } catch (e) { console.error("Profile load error:", e); }
   }
 
-  async function loadSeason() {
-    try {
-      const data = await staticFetch("season.json");
-      const s = data.data || data;
-      document.getElementById("seasonRank").textContent = s.rank ? `#${s.rank}` : "—";
-      document.getElementById("seasonTier").textContent = s.tier || s.seasonName || "Active Season";
-      const pts     = s.points || 0;
-      const nextPts = s.next_tier_points || s.nextTierPoints || null;
-      document.getElementById("seasonPoints").textContent = `${pts} pts`;
-      if (nextPts) {
-        document.getElementById("seasonProgress").style.width = `${Math.min(100, Math.round((pts / nextPts) * 100))}%`;
-        document.getElementById("seasonNext").textContent = `${nextPts} pts`;
-      } else {
-        document.getElementById("seasonProgress").style.width = "100%";
-        document.getElementById("seasonNext").textContent = "Max tier";
-      }
-    } catch (e) {
-      document.getElementById("seasonTier").textContent = "Season data unavailable";
-      console.error("Season load error:", e);
-    }
-  }
 
   async function loadActivity() {
     const list = document.getElementById("pwnList");
@@ -521,6 +423,6 @@
   }
 
   (async () => {
-    await Promise.allSettled([loadProfile(), loadSeason(), loadActivity(), loadRadar()]);
+    await Promise.allSettled([loadProfile(), loadActivity(), loadRadar()]);
   })();
 </script>
