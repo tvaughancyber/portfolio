@@ -21,16 +21,31 @@ jobs:
             -H "Referer: https://app.hackthebox.com/" \
             "https://labs.hackthebox.com/api/v4/user/profile/basic/1448104" \
             -o static/htb/profile.json
+          echo "Profile JSON:"
+          cat static/htb/profile.json
 
       - name: Fetch avatar image
         continue-on-error: true
         run: |
-          AVATAR=$(cat static/htb/profile.json | python3 -c "import sys,json; print(json.load(sys.stdin)['profile']['avatar'])" 2>/dev/null || echo "")
+          echo "Full profile structure:"
+          python3 -c "import json; d=json.load(open('static/htb/profile.json')); print(json.dumps(d, indent=2))"
+          AVATAR=$(python3 -c "
+          import json
+          d = json.load(open('static/htb/profile.json'))
+          for path in [['profile','avatar'], ['profile','avatar_url'], ['data','avatar'], ['avatar']]:
+              try:
+                  v = d
+                  for k in path: v = v[k]
+                  print(v)
+                  break
+              except: pass
+          " 2>/dev/null || echo "")
+          echo "Avatar path: $AVATAR"
           if [ -n "$AVATAR" ]; then
             curl -sf \
               -H "User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36" \
               "https://labs.hackthebox.com${AVATAR}" \
-              -o static/htb/avatar.png && echo "Avatar downloaded" || echo "Avatar download failed"
+              -o static/htb/avatar.png && echo "Avatar OK" || echo "Avatar curl failed"
           else
             echo "No avatar URL found"
           fi
@@ -48,13 +63,21 @@ jobs:
       - name: Fetch HTB graph
         continue-on-error: true
         run: |
-          curl -sf \
-            -H "Authorization: Bearer ${{ secrets.HTB_TOKEN }}" \
-            -H "Accept: application/json" \
-            -H "User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36" \
-            -H "Referer: https://app.hackthebox.com/" \
-            "https://labs.hackthebox.com/api/v4/user/profile/graph/radar/1448104?duration=1M" \
-            -o static/htb/graph.json
+          for DURATION in "1M" "3M" "6M" "1Y" "month" "3months"; do
+            echo "Trying duration=$DURATION"
+            RESP=$(curl -s \
+              -H "Authorization: Bearer ${{ secrets.HTB_TOKEN }}" \
+              -H "Accept: application/json" \
+              -H "User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36" \
+              -H "Referer: https://app.hackthebox.com/" \
+              "https://labs.hackthebox.com/api/v4/user/profile/graph/radar/1448104?duration=$DURATION")
+            echo "Response: $RESP"
+            if ! echo "$RESP" | grep -q '"message"'; then
+              echo "$RESP" > static/htb/graph.json
+              echo "Saved with duration=$DURATION"
+              break
+            fi
+          done
 
       - name: Commit updated data
         run: |
