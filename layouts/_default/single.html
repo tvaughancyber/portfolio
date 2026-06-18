@@ -2,7 +2,7 @@
 <article class="article">
   <header class="article-head">
     <div class="article-meta">
-      {{ if not .Params.hide_date }}<time>{{ .Date.Format "January 2, 2006" }}</time>
+      {{ if not .Params.hide_date }}<time>{{ .Date.Format "January 2, 2006" }}</time>{{ end }}
       {{ with .Params.tags }}
         <span class="article-tags">
           {{ range . }}<span class="tag">#{{ . }}</span>{{ end }}
