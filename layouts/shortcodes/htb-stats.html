@@ -29,7 +29,7 @@
   .htb-page {
     max-width: 1080px;
     margin: 0 auto;
-    padding: 48px 24px 96px;
+    padding: 8px 24px 96px;
     font-family: var(--font-body);
     color: var(--text);
   }
@@ -39,7 +39,7 @@
     display: flex;
     align-items: center;
     gap: 20px;
-    margin-bottom: 40px;
+    margin-bottom: 12px;
   }
 
   .htb-avatar {
@@ -52,18 +52,25 @@
     background: var(--surface-2);
   }
 
-  .htb-header-text h2 {
+  .htb-header-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 6px;
+  }
+
+  .htb-header-left h2 {
     font-family: var(--font-mono);
     font-size: 1.5rem;
     font-weight: 700;
     color: var(--htb-green);
-    margin: 0 0 4px;
+    margin: 0;
     letter-spacing: -0.02em;
   }
 
   .htb-meta {
     display: flex;
-    gap: 16px;
+    gap: 12px;
     flex-wrap: wrap;
     align-items: center;
   }
@@ -87,65 +94,63 @@
     color: var(--text-muted);
   }
 
-  /* ── stat grid ── */
-  .stat-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  .htb-header-stats {
+    display: flex;
     gap: 10px;
     margin-bottom: 28px;
+    flex-wrap: wrap;
   }
 
-  .stat-card {
+  .htb-header-stat {
+    flex: 1;
+    min-width: 120px;
+  }
+
+  .htb-header-stat {
     background: var(--surface);
     border: 1px solid var(--border);
     border-radius: var(--radius);
-    padding: 16px 18px;
+    padding: 10px 16px;
+    text-align: center;
     position: relative;
     overflow: hidden;
+    min-width: 80px;
   }
 
-  .stat-card::before {
+  .htb-header-stat::before {
     content: '';
     position: absolute;
     top: 0; left: 0; right: 0;
     height: 2px;
-    background: var(--accent-color, var(--border));
+    background: var(--hs-accent, var(--border));
   }
 
-  .stat-card.green-accent { --accent-color: var(--htb-green); }
-  .stat-card.blue-accent  { --accent-color: var(--user-own); }
-  .stat-card.red-accent   { --accent-color: var(--blood); }
-  .stat-card.gold-accent  { --accent-color: var(--gold); }
-
-  .stat-label {
+  .htb-header-stat .hs-label {
     font-family: var(--font-mono);
-    font-size: 0.65rem;
+    font-size: 0.58rem;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.1em;
     color: var(--text-muted);
-    margin-bottom: 8px;
+    margin-bottom: 4px;
   }
 
-  .stat-value {
+  .htb-header-stat .hs-value {
     font-family: var(--font-mono);
-    font-size: 1.75rem;
+    font-size: 1.3rem;
     font-weight: 700;
     line-height: 1;
     color: var(--text);
   }
 
-  .stat-value.green { color: var(--htb-green); }
-  .stat-value.blue  { color: var(--user-own); }
-  .stat-value.red   { color: var(--blood); }
-  .stat-value.gold  { color: var(--gold); }
-
-  .stat-sub {
+  .htb-header-stat .hs-sub {
     font-family: var(--font-mono);
-    font-size: 0.68rem;
+    font-size: 0.58rem;
     color: var(--text-muted);
-    margin-top: 5px;
+    margin-top: 2px;
   }
+
+  /* stat-grid removed — stats now live in header */
 
   /* ── two-col layout ── */
   .htb-two-col {
@@ -413,8 +418,8 @@
     flex-shrink: 0;
   }
 
-  .pwn-badge.user { background: rgba(56,189,248,0.12); color: var(--user-own); }
-  .pwn-badge.root { background: rgba(159,239,0,0.12);  color: var(--htb-green); }
+  .pwn-badge.user { background: rgba(159,239,0,0.12);  color: var(--htb-green); }
+  .pwn-badge.root { background: rgba(239,68,68,0.12);  color: var(--blood); }
 
   .pwn-name {
     font-family: var(--font-mono);
@@ -491,9 +496,9 @@
   .htb-footer a:hover { color: var(--htb-green); }
 
   /* ── responsive ── */
-  @media (max-width: 520px) {
-    .stat-grid { grid-template-columns: repeat(2, 1fr); }
-    .htb-header { flex-direction: column; align-items: flex-start; }
+  @media (max-width: 700px) {
+    .htb-header { flex-wrap: wrap; }
+    .htb-header-stats { margin-left: 0; flex-wrap: wrap; }
     .pwn-pts { display: none; }
   }
 </style>
@@ -503,7 +508,7 @@
   <!-- Header -->
   <div class="htb-header">
     <img class="htb-avatar" id="htbAvatar" src="" alt="HTB Avatar" onerror="this.style.display='none'" />
-    <div class="htb-header-text">
+    <div class="htb-header-left">
       <h2 id="htbUsername">tvaughancyber</h2>
       <div class="htb-meta">
         <span class="htb-rank-pill" id="htbRankPill">Hacker</span>
@@ -513,31 +518,23 @@
   </div>
 
   <!-- Stat cards -->
-  <div class="stat-grid">
-    <div class="stat-card blue-accent">
-      <div class="stat-label">User Owns</div>
-      <div class="stat-value blue" id="statUserOwns">—</div>
+  <div class="htb-header-stats">
+    <div class="htb-header-stat" style="--hs-accent: var(--htb-green)">
+      <div class="hs-label">User Owns</div>
+      <div class="hs-value" style="color:var(--htb-green)" id="statUserOwns">—</div>
     </div>
-    <div class="stat-card green-accent">
-      <div class="stat-label">Root Owns</div>
-      <div class="stat-value green" id="statRootOwns">—</div>
+    <div class="htb-header-stat" style="--hs-accent: var(--blood)">
+      <div class="hs-label">Root Owns</div>
+      <div class="hs-value" style="color:var(--blood)" id="statRootOwns">—</div>
     </div>
-    <div class="stat-card red-accent">
-      <div class="stat-label">User Bloods</div>
-      <div class="stat-value red" id="statUserBloods">—</div>
+    <div class="htb-header-stat" style="--hs-accent: var(--gold)">
+      <div class="hs-label">Points</div>
+      <div class="hs-value" id="statPoints">—</div>
     </div>
-    <div class="stat-card red-accent">
-      <div class="stat-label">Root Bloods</div>
-      <div class="stat-value red" id="statRootBloods">—</div>
-    </div>
-    <div class="stat-card gold-accent">
-      <div class="stat-label">Points</div>
-      <div class="stat-value" id="statPoints">—</div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-label">Global Rank</div>
-      <div class="stat-value" id="statRanking">—</div>
-      <div class="stat-sub" id="statNextRank"></div>
+    <div class="htb-header-stat">
+      <div class="hs-label">Global Rank</div>
+      <div class="hs-value" id="statRanking">—</div>
+      <div class="hs-sub" id="statNextRank"></div>
     </div>
   </div>
 
@@ -880,8 +877,6 @@
       set("htbRankPill", p.rank || "Hacker");
       set("statUserOwns",   p.user_owns ?? "—");
       set("statRootOwns",   p.system_owns ?? "—");
-      set("statUserBloods", p.user_bloods ?? "—");
-      set("statRootBloods", p.system_bloods ?? "—");
       set("statPoints",     p.points ?? "—");
       set("statRanking",    p.ranking ? "#" + p.ranking : "—");
       if (p.next_rank && p.current_rank_progress != null) {
