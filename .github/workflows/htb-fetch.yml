@@ -14,21 +14,18 @@ jobs:
 
       - name: Fetch HTB profile
         run: |
-          curl -sf \
+          RESP=$(curl -s \
             -H "Authorization: Bearer ${{ secrets.HTB_TOKEN }}" \
             -H "Accept: application/json" \
             -H "User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36" \
             -H "Referer: https://app.hackthebox.com/" \
-            "https://labs.hackthebox.com/api/v4/user/profile/basic/1448104" \
-            -o static/htb/profile.json
-          echo "Profile JSON:"
-          cat static/htb/profile.json
+            "https://labs.hackthebox.com/api/v4/user/profile/basic/1448104")
+          echo "Profile response: $RESP"
+          echo "$RESP" > static/htb/profile.json
 
       - name: Fetch avatar image
         continue-on-error: true
         run: |
-          echo "Full profile structure:"
-          python3 -c "import json; d=json.load(open('static/htb/profile.json')); print(json.dumps(d, indent=2))"
           AVATAR=$(python3 -c "
           import json
           d = json.load(open('static/htb/profile.json'))
@@ -50,7 +47,48 @@ jobs:
             echo "No avatar URL found"
           fi
 
-      - name: Fetch HTB activity
+      - name: Fetch HTB activity (all pages)
+        run: |
+          python3 - << 'EOF'
+          import urllib.request
+          import json
+          import os
+
+          TOKEN = os.environ["HTB_TOKEN"]
+          HEADERS = {
+              "Authorization": f"Bearer {TOKEN}",
+              "Accept": "application/json",
+              "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
+              "Referer": "https://app.hackthebox.com/",
+          }
+          USER_ID = 1448104
+          all_items = []
+          page = 1
+
+          while True:
+              url = f"https://labs.hackthebox.com/api/v5/user/profile/activity/{USER_ID}?page={page}"
+              req = urllib.request.Request(url, headers=HEADERS)
+              with urllib.request.urlopen(req) as resp:
+                  data = json.loads(resp.read())
+
+              items = data.get("data", [])
+              all_items.extend(items)
+              print(f"Page {page}: {len(items)} items")
+
+              meta = data.get("meta", {})
+              if page >= meta.get("lastPage", 1):
+                  break
+              page += 1
+
+          print(f"Total activity items: {len(all_items)}")
+          os.makedirs("static/htb", exist_ok=True)
+          with open("static/htb/activity.json", "w") as f:
+              json.dump({"data": all_items}, f)
+          EOF
+        env:
+          HTB_TOKEN: ${{ secrets.HTB_TOKEN }}
+
+      - name: Fetch season rank
         continue-on-error: true
         run: |
           RESP=$(curl -s \
@@ -58,33 +96,100 @@ jobs:
             -H "Accept: application/json" \
             -H "User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36" \
             -H "Referer: https://app.hackthebox.com/" \
-            "https://labs.hackthebox.com/api/v5/user/profile/activity/1448104")
-          echo "Activity response: $RESP"
-          if echo "$RESP" | python3 -c "import sys,json; d=json.load(sys.stdin); sys.exit(0 if 'message' not in d else 1)" 2>/dev/null; then
-            echo "$RESP" > static/htb/activity.json
-            echo "Activity saved"
+            "https://labs.hackthebox.com/api/v4/season/user/rank/15")
+          echo "Season response: $RESP"
+          if echo "$RESP" | python3 -c "import sys,json; d=json.load(sys.stdin); sys.exit(0 if 'data' in d else 1)" 2>/dev/null; then
+            echo "$RESP" > static/htb/season.json
+            echo "Season data saved"
           else
-            echo "Activity endpoint returned an error, skipping save"
+            echo "Season endpoint returned error, skipping"
           fi
 
-      - name: Fetch HTB graph
-        continue-on-error: true
+      - name: Fetch machine matrices
         run: |
-          for DURATION in "1M" "3M" "6M" "1Y" "month" "3months"; do
-            echo "Trying duration=$DURATION"
-            RESP=$(curl -s \
-              -H "Authorization: Bearer ${{ secrets.HTB_TOKEN }}" \
-              -H "Accept: application/json" \
-              -H "User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36" \
-              -H "Referer: https://app.hackthebox.com/" \
-              "https://labs.hackthebox.com/api/v4/user/profile/graph/radar/1448104?duration=$DURATION")
-            echo "Response: $RESP"
-            if ! echo "$RESP" | grep -q '"message"'; then
-              echo "$RESP" > static/htb/graph.json
-              echo "Saved with duration=$DURATION"
-              break
-            fi
-          done
+          python3 - << 'EOF'
+          import urllib.request
+          import json
+          import os
+          import time
+
+          TOKEN = os.environ["HTB_TOKEN"]
+          HEADERS = {
+              "Authorization": f"Bearer {TOKEN}",
+              "Accept": "application/json",
+              "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
+              "Referer": "https://app.hackthebox.com/",
+          }
+
+          DIFFICULTY_MAP = {
+              range(0,  20):  "Easy",
+              range(20, 40):  "Easy",
+              range(40, 60):  "Medium",
+              range(60, 80):  "Hard",
+              range(80, 101): "Insane",
+          }
+
+          def get_difficulty(score):
+              for r, label in DIFFICULTY_MAP.items():
+                  if score in r:
+                      return label
+              return "Medium"
+
+          # Load activity and deduplicate by machine id
+          with open("static/htb/activity.json") as f:
+              activity = json.load(f)
+
+          seen = {}
+          for item in activity.get("data", []):
+              mid = item["id"]
+              if mid not in seen or item["type"] == "root":
+                  seen[mid] = item
+
+          print(f"Unique machines: {len(seen)}")
+
+          matrices = {}
+          for mid, item in seen.items():
+              url = f"https://labs.hackthebox.com/api/v4/machine/graph/matrix/{mid}"
+              try:
+                  req = urllib.request.Request(url, headers=HEADERS)
+                  with urllib.request.urlopen(req, timeout=10) as resp:
+                      data = json.loads(resp.read())
+
+                  agg = data.get("info", {}).get("aggregate")
+                  if agg and any(v > 0 for v in agg.values()):
+                      # Also fetch machine profile for OS and difficulty
+                      prof_url = f"https://labs.hackthebox.com/api/v4/machine/profile/{mid}"
+                      req2 = urllib.request.Request(prof_url, headers=HEADERS)
+                      with urllib.request.urlopen(req2, timeout=10) as resp2:
+                          prof = json.loads(resp2.read())
+
+                      info = prof.get("info", {})
+                      matrices[str(mid)] = {
+                          "name":       item["name"],
+                          "os":         info.get("os", "Linux"),
+                          "difficulty": info.get("difficultyText", "Medium"),
+                          "aggregate":  agg,
+                      }
+                      print(f"OK: {item['name']} ({mid})")
+                  else:
+                      print(f"No matrix data: {item['name']} ({mid}) - likely active box")
+
+              except Exception as e:
+                  print(f"Error fetching {item['name']} ({mid}): {e}")
+
+              time.sleep(0.3)  # be polite to the API
+
+          print(f"\nMatrices collected: {len(matrices)}")
+          os.makedirs("static/htb", exist_ok=True)
+          with open("static/htb/matrices.json", "w") as f:
+              json.dump(matrices, f, indent=2)
+          EOF
+        env:
+          HTB_TOKEN: ${{ secrets.HTB_TOKEN }}
+
+      - name: Process data into stats.json
+        run: |
+          python3 scripts/process_htb.py
 
       - name: Commit updated data
         run: |
