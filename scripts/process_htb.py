@@ -80,23 +80,32 @@ def main():
 
         unique_boxes = list(seen.values())
 
-        # Recent activity: pass ALL entries (user + root) for last 20 unique boxes
-        # JS will group them into one row per box
+        # Recent activity: pass ALL user+root entries for the 20 most recent unique boxes
+        # JS groups them into one row per box showing both badges
         mat = matrices or {}
-        recent_ids = [b["id"] for b in unique_boxes[:20]]
-        recent_items = [i for i in items if i["id"] in recent_ids]
+        recent_ids_ordered = []
+        seen_ids = set()
+        for item in items:
+            if item["id"] not in seen_ids:
+                recent_ids_ordered.append(item["id"])
+                seen_ids.add(item["id"])
+            if len(recent_ids_ordered) >= 20:
+                break
+
+        recent_ids_set = set(recent_ids_ordered)
         out["recent"] = [
             {
-                "id":         b["id"],
-                "name":       b["name"],
-                "type":       b["type"],
-                "points":     b["points"],
-                "ownDate":    b["ownDate"],
-                "avatar":     b["avatar"],
-                "os":         mat.get(str(b["id"]), {}).get("os", None),
-                "difficulty": mat.get(str(b["id"]), {}).get("difficulty", None),
+                "id":         item["id"],
+                "name":       item["name"],
+                "type":       item["type"],
+                "points":     item["points"],
+                "ownDate":    item["ownDate"],
+                "avatar":     item["avatar"],
+                "os":         mat.get(str(item["id"]), {}).get("os", None),
+                "difficulty": mat.get(str(item["id"]), {}).get("difficulty", None),
             }
-            for b in recent_items
+            for item in items
+            if item["id"] in recent_ids_set
         ]
 
     # --- Matrices: skill radar + OS + difficulty ---

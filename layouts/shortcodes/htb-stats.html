@@ -513,7 +513,7 @@
 
   <!-- Header -->
   <div class="htb-header">
-    <img class="htb-avatar" id="htbAvatar" src="" alt="HTB Avatar" crossorigin="anonymous" onerror="this.style.visibility='hidden'" />
+    <img class="htb-avatar" id="htbAvatar" src="/htb/avatar.png" alt="HTB Avatar" onerror="this.style.visibility='hidden'" />
     <div class="htb-header-left">
       <h2 id="htbUsername">tvaughancyber</h2>
       <div class="htb-meta">
@@ -525,9 +525,9 @@
 
   <!-- Stat cards -->
   <div class="htb-header-stats">
-    <div class="htb-header-stat" style="--hs-accent: var(--htb-green)">
+    <div class="htb-header-stat" style="--hs-accent: var(--user-own)">
       <div class="hs-label">User Owns</div>
-      <div class="hs-value" style="color:var(--htb-green)" id="statUserOwns">—</div>
+      <div class="hs-value" style="color:var(--user-own)" id="statUserOwns">—</div>
     </div>
     <div class="htb-header-stat" style="--hs-accent: var(--blood)">
       <div class="hs-label">Root Owns</div>
@@ -537,7 +537,7 @@
       <div class="hs-label">Points</div>
       <div class="hs-value" id="statPoints">—</div>
     </div>
-    <div class="htb-header-stat">
+    <div class="htb-header-stat" style="--hs-accent: var(--htb-green)">
       <div class="hs-label">Global Rank</div>
       <div class="hs-value" style="color:var(--htb-green)" id="statRanking">—</div>
       <div class="hs-sub" id="statNextRank"></div>
@@ -637,6 +637,7 @@
   <div class="htb-footer">
     Data via <a href="https://hackthebox.com" target="_blank" rel="noopener">HackTheBox API</a>
     &nbsp;&middot;&nbsp; Updated every 6 hours via GitHub Actions
+    &nbsp;&middot;&nbsp; <span id="htbToday"></span>
   </div>
 </div>
 
@@ -907,8 +908,6 @@
 
       // profile
       const p = data.profile || {};
-      const avatar = document.getElementById("htbAvatar");
-      if (avatar) avatar.src = "/htb/avatar.png";
       set("htbUsername", p.name || "tvaughancyber");
       set("htbRankPill", p.rank || "Hacker");
       set("statUserOwns",   p.user_owns ?? "—");
@@ -932,6 +931,11 @@
 
       // activity
       renderActivity(data.recent || []);
+
+      // Live date
+      const today = new Date();
+      const dateStr = today.toLocaleDateString("en-US", { year:"numeric", month:"long", day:"numeric" });
+      set("htbToday", dateStr);
 
     } catch (e) {
       console.error("HTB stats load error:", e);
