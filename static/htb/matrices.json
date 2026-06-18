@@ -178,5 +178,797 @@
       "custom": 3.6,
       "ctf": 4.1
     }
+  },
+  "673": {
+    "name": "Data",
+    "os": "Linux",
+    "difficulty": "Easy",
+    "aggregate": {
+      "enum": 5.9,
+      "real": 6.2,
+      "cve": 6.5,
+      "custom": 3.5,
+      "ctf": 3.8
+    }
+  },
+  "118": {
+    "name": "Bashed",
+    "os": "Linux",
+    "difficulty": "Easy",
+    "aggregate": {
+      "enum": 4.7,
+      "real": 3.7,
+      "cve": 3.8,
+      "custom": 6.2,
+      "ctf": 6.3
+    }
+  },
+  "223": {
+    "name": "Monteverde",
+    "os": "Windows",
+    "difficulty": "Medium",
+    "aggregate": {
+      "enum": 7.4,
+      "real": 7.6,
+      "cve": 6.3,
+      "custom": 3.7,
+      "ctf": 2.4
+    }
+  },
+  "9": {
+    "name": "Arctic",
+    "os": "Windows",
+    "difficulty": "Easy",
+    "aggregate": {
+      "enum": 4.6,
+      "real": 4.8,
+      "cve": 5.9,
+      "custom": 4.1,
+      "ctf": 5.2
+    }
+  },
+  "156": {
+    "name": "Access",
+    "os": "Windows",
+    "difficulty": "Easy",
+    "aggregate": {
+      "enum": 6.2,
+      "real": 6.1,
+      "cve": 4.9,
+      "custom": 5.1,
+      "ctf": 3.9
+    }
+  },
+  "608": {
+    "name": "Editorial",
+    "os": "Linux",
+    "difficulty": "Easy",
+    "aggregate": {
+      "enum": 6.2,
+      "real": 5.7,
+      "cve": 5.9,
+      "custom": 4.1,
+      "ctf": 4.3
+    }
+  },
+  "423": {
+    "name": "Pandora",
+    "os": "Linux",
+    "difficulty": "Easy",
+    "aggregate": {
+      "enum": 6.2,
+      "real": 5.3,
+      "cve": 5.6,
+      "custom": 4.4,
+      "ctf": 4.7
+    }
+  },
+  "549": {
+    "name": "Pilgrimage",
+    "os": "Linux",
+    "difficulty": "Easy",
+    "aggregate": {
+      "enum": 5.7,
+      "real": 5.1,
+      "cve": 5.8,
+      "custom": 4.2,
+      "ctf": 4.9
+    }
+  },
+  "136": {
+    "name": "Sunday",
+    "os": "Solaris",
+    "difficulty": "Easy",
+    "aggregate": {
+      "enum": 5.1,
+      "real": 3.8,
+      "cve": 3.7,
+      "custom": 6.3,
+      "ctf": 6.2
+    }
+  },
+  "620": {
+    "name": "Sea",
+    "os": "Linux",
+    "difficulty": "Easy",
+    "aggregate": {
+      "enum": 6.4,
+      "real": 5.4,
+      "cve": 5.8,
+      "custom": 4.2,
+      "ctf": 4.6
+    }
+  },
+  "4": {
+    "name": "Popcorn",
+    "os": "Linux",
+    "difficulty": "Medium",
+    "aggregate": {
+      "enum": 5.4,
+      "real": 5.5,
+      "cve": 6.1,
+      "custom": 3.9,
+      "ctf": 4.5
+    }
+  },
+  "132": {
+    "name": "Poison",
+    "os": "FreeBSD",
+    "difficulty": "Medium",
+    "aggregate": {
+      "enum": 5.6,
+      "real": 4.7,
+      "cve": 4.5,
+      "custom": 5.5,
+      "ctf": 5.3
+    }
+  },
+  "222": {
+    "name": "OpenAdmin",
+    "os": "Linux",
+    "difficulty": "Easy",
+    "aggregate": {
+      "enum": 6.5,
+      "real": 5,
+      "cve": 6.4,
+      "custom": 3.6,
+      "ctf": 5
+    }
+  },
+  "641": {
+    "name": "UnderPass",
+    "os": "Linux",
+    "difficulty": "Easy",
+    "aggregate": {
+      "enum": 6.4,
+      "real": 4.8,
+      "cve": 4.9,
+      "custom": 5.1,
+      "ctf": 5.2
+    }
+  },
+  "574": {
+    "name": "Codify",
+    "os": "Linux",
+    "difficulty": "Easy",
+    "aggregate": {
+      "enum": 5.3,
+      "real": 5,
+      "cve": 5.3,
+      "custom": 4.7,
+      "ctf": 5
+    }
+  },
+  "888": {
+    "name": "Logging",
+    "os": "Windows",
+    "difficulty": "Medium",
+    "aggregate": {
+      "enum": 7.2,
+      "real": 6.8,
+      "cve": 4.7,
+      "custom": 5.3,
+      "ctf": 3.2
+    }
+  },
+  "577": {
+    "name": "Devvortex",
+    "os": "Linux",
+    "difficulty": "Easy",
+    "aggregate": {
+      "enum": 6,
+      "real": 5.5,
+      "cve": 6.3,
+      "custom": 3.7,
+      "ctf": 4.5
+    }
+  },
+  "513": {
+    "name": "Precious",
+    "os": "Linux",
+    "difficulty": "Easy",
+    "aggregate": {
+      "enum": 4.6,
+      "real": 4.6,
+      "cve": 5.3,
+      "custom": 4.7,
+      "ctf": 5.4
+    }
+  },
+  "829": {
+    "name": "Facts",
+    "os": "Linux",
+    "difficulty": "Easy",
+    "aggregate": {
+      "enum": 5.2,
+      "real": 5.3,
+      "cve": 6.1,
+      "custom": 3.9,
+      "ctf": 4.7
+    }
+  },
+  "867": {
+    "name": "Silentium",
+    "os": "Linux",
+    "difficulty": "Easy",
+    "aggregate": {
+      "enum": 5.8,
+      "real": 5.9,
+      "cve": 7,
+      "custom": 3,
+      "ctf": 4.1
+    }
+  },
+  "259": {
+    "name": "Tabby",
+    "os": "Linux",
+    "difficulty": "Easy",
+    "aggregate": {
+      "enum": 6.7,
+      "real": 6.3,
+      "cve": 6.2,
+      "custom": 3.8,
+      "ctf": 3.7
+    }
+  },
+  "188": {
+    "name": "SwagShop",
+    "os": "Linux",
+    "difficulty": "Easy",
+    "aggregate": {
+      "enum": 5.4,
+      "real": 6.4,
+      "cve": 7.5,
+      "custom": 2.5,
+      "ctf": 3.6
+    }
+  },
+  "144": {
+    "name": "Jerry",
+    "os": "Windows",
+    "difficulty": "Easy",
+    "aggregate": {
+      "enum": 3.9,
+      "real": 4.1,
+      "cve": 4.9,
+      "custom": 5.1,
+      "ctf": 5.9
+    }
+  },
+  "121": {
+    "name": "Nibbles",
+    "os": "Linux",
+    "difficulty": "Easy",
+    "aggregate": {
+      "enum": 4.7,
+      "real": 4.1,
+      "cve": 5.1,
+      "custom": 4.9,
+      "ctf": 5.9
+    }
+  },
+  "634": {
+    "name": "Administrator",
+    "os": "Windows",
+    "difficulty": "Medium",
+    "aggregate": {
+      "enum": 7.4,
+      "real": 6.8,
+      "cve": 6.1,
+      "custom": 3.9,
+      "ctf": 3.2
+    }
+  },
+  "652": {
+    "name": "TheFrizz",
+    "os": "Windows",
+    "difficulty": "Medium",
+    "aggregate": {
+      "enum": 5.7,
+      "real": 4.9,
+      "cve": 5,
+      "custom": 5,
+      "ctf": 5.1
+    }
+  },
+  "531": {
+    "name": "Escape",
+    "os": "Windows",
+    "difficulty": "Medium",
+    "aggregate": {
+      "enum": 6.7,
+      "real": 6.6,
+      "cve": 5.7,
+      "custom": 4.3,
+      "ctf": 3.4
+    }
+  },
+  "255": {
+    "name": "Blackfield",
+    "os": "Windows",
+    "difficulty": "Hard",
+    "aggregate": {
+      "enum": 8,
+      "real": 7.8,
+      "cve": 5.5,
+      "custom": 4.5,
+      "ctf": 2.2
+    }
+  },
+  "859": {
+    "name": "DevArea",
+    "os": "Linux",
+    "difficulty": "Medium",
+    "aggregate": {
+      "enum": 5.9,
+      "real": 5.3,
+      "cve": 6.1,
+      "custom": 3.9,
+      "ctf": 4.7
+    }
+  },
+  "212": {
+    "name": "Forest",
+    "os": "Windows",
+    "difficulty": "Easy",
+    "aggregate": {
+      "enum": 7.1,
+      "real": 7.2,
+      "cve": 5.9,
+      "custom": 4.1,
+      "ctf": 2.8
+    }
+  },
+  "484": {
+    "name": "Support",
+    "os": "Windows",
+    "difficulty": "Easy",
+    "aggregate": {
+      "enum": 6.4,
+      "real": 6.4,
+      "cve": 5.2,
+      "custom": 4.8,
+      "ctf": 3.6
+    }
+  },
+  "662": {
+    "name": "Fluffy",
+    "os": "Windows",
+    "difficulty": "Easy",
+    "aggregate": {
+      "enum": 6.9,
+      "real": 6.9,
+      "cve": 6.4,
+      "custom": 3.6,
+      "ctf": 3.1
+    }
+  },
+  "401": {
+    "name": "Return",
+    "os": "Windows",
+    "difficulty": "Easy",
+    "aggregate": {
+      "enum": 4.8,
+      "real": 4.8,
+      "cve": 4.8,
+      "custom": 5.2,
+      "ctf": 5.2
+    }
+  },
+  "229": {
+    "name": "Sauna",
+    "os": "Windows",
+    "difficulty": "Easy",
+    "aggregate": {
+      "enum": 7.3,
+      "real": 7,
+      "cve": 6,
+      "custom": 4,
+      "ctf": 3
+    }
+  },
+  "627": {
+    "name": "Cicada",
+    "os": "Windows",
+    "difficulty": "Easy",
+    "aggregate": {
+      "enum": 7.2,
+      "real": 6,
+      "cve": 5.7,
+      "custom": 4.3,
+      "ctf": 4
+    }
+  },
+  "856": {
+    "name": "Kobold",
+    "os": "Linux",
+    "difficulty": "Easy",
+    "aggregate": {
+      "enum": 5.9,
+      "real": 5.4,
+      "cve": 6.1,
+      "custom": 3.9,
+      "ctf": 4.6
+    }
+  },
+  "170": {
+    "name": "Help",
+    "os": "Linux",
+    "difficulty": "Easy",
+    "aggregate": {
+      "enum": 6.1,
+      "real": 6.9,
+      "cve": 7.5,
+      "custom": 2.5,
+      "ctf": 3.1
+    }
+  },
+  "850": {
+    "name": "VariaType",
+    "os": "Linux",
+    "difficulty": "Medium",
+    "aggregate": {
+      "enum": 6.1,
+      "real": 5.4,
+      "cve": 6.6,
+      "custom": 3.4,
+      "ctf": 4.6
+    }
+  },
+  "835": {
+    "name": "WingData",
+    "os": "Linux",
+    "difficulty": "Easy",
+    "aggregate": {
+      "enum": 5,
+      "real": 5.1,
+      "cve": 6.6,
+      "custom": 3.4,
+      "ctf": 4.9
+    }
+  },
+  "847": {
+    "name": "CCTV",
+    "os": "Linux",
+    "difficulty": "Easy",
+    "aggregate": {
+      "enum": 5.3,
+      "real": 5.4,
+      "cve": 6.5,
+      "custom": 3.5,
+      "ctf": 4.6
+    }
+  },
+  "648": {
+    "name": "Titanic",
+    "os": "Linux",
+    "difficulty": "Easy",
+    "aggregate": {
+      "enum": 6.1,
+      "real": 5.2,
+      "cve": 5.7,
+      "custom": 4.3,
+      "ctf": 4.8
+    }
+  },
+  "651": {
+    "name": "Dog",
+    "os": "Linux",
+    "difficulty": "Easy",
+    "aggregate": {
+      "enum": 6.2,
+      "real": 5.3,
+      "cve": 5.9,
+      "custom": 4.1,
+      "ctf": 4.7
+    }
+  },
+  "551": {
+    "name": "Sau",
+    "os": "Linux",
+    "difficulty": "Easy",
+    "aggregate": {
+      "enum": 5,
+      "real": 4.8,
+      "cve": 6,
+      "custom": 4,
+      "ctf": 5.2
+    }
+  },
+  "617": {
+    "name": "GreenHorn",
+    "os": "Linux",
+    "difficulty": "Easy",
+    "aggregate": {
+      "enum": 5,
+      "real": 4.1,
+      "cve": 5.2,
+      "custom": 4.8,
+      "ctf": 5.9
+    }
+  },
+  "597": {
+    "name": "Usage",
+    "os": "Linux",
+    "difficulty": "Easy",
+    "aggregate": {
+      "enum": 6,
+      "real": 5.8,
+      "cve": 5.7,
+      "custom": 4.3,
+      "ctf": 4.2
+    }
+  },
+  "596": {
+    "name": "IClean",
+    "os": "Linux",
+    "difficulty": "Medium",
+    "aggregate": {
+      "enum": 6,
+      "real": 6,
+      "cve": 5.9,
+      "custom": 4.1,
+      "ctf": 4
+    }
+  },
+  "618": {
+    "name": "Compiled",
+    "os": "Windows",
+    "difficulty": "Medium",
+    "aggregate": {
+      "enum": 6.6,
+      "real": 6.2,
+      "cve": 6.1,
+      "custom": 3.9,
+      "ctf": 3.8
+    }
+  },
+  "603": {
+    "name": "BoardLight",
+    "os": "Linux",
+    "difficulty": "Easy",
+    "aggregate": {
+      "enum": 6.3,
+      "real": 5.3,
+      "cve": 6.4,
+      "custom": 3.6,
+      "ctf": 4.7
+    }
+  },
+  "605": {
+    "name": "Blurry",
+    "os": "Linux",
+    "difficulty": "Medium",
+    "aggregate": {
+      "enum": 5.6,
+      "real": 6.1,
+      "cve": 5.8,
+      "custom": 4.2,
+      "ctf": 3.9
+    }
+  },
+  "51": {
+    "name": "Blue",
+    "os": "Windows",
+    "difficulty": "Easy",
+    "aggregate": {
+      "enum": 3.9,
+      "real": 4.6,
+      "cve": 6.2,
+      "custom": 3.8,
+      "ctf": 5.4
+    }
+  },
+  "594": {
+    "name": "Headless",
+    "os": "Linux",
+    "difficulty": "Easy",
+    "aggregate": {
+      "enum": 5.4,
+      "real": 5.2,
+      "cve": 6.1,
+      "custom": 3.9,
+      "ctf": 4.8
+    }
+  },
+  "590": {
+    "name": "Perfection",
+    "os": "Linux",
+    "difficulty": "Easy",
+    "aggregate": {
+      "enum": 5.6,
+      "real": 5.3,
+      "cve": 5.4,
+      "custom": 4.6,
+      "ctf": 4.7
+    }
+  },
+  "240": {
+    "name": "ServMon",
+    "os": "Windows",
+    "difficulty": "Easy",
+    "aggregate": {
+      "enum": 5,
+      "real": 4.8,
+      "cve": 7,
+      "custom": 3,
+      "ctf": 5.2
+    }
+  },
+  "578": {
+    "name": "Broker",
+    "os": "Linux",
+    "difficulty": "Easy",
+    "aggregate": {
+      "enum": 5.4,
+      "real": 5.4,
+      "cve": 6.1,
+      "custom": 3.9,
+      "ctf": 4.6
+    }
+  },
+  "357": {
+    "name": "Intelligence",
+    "os": "Windows",
+    "difficulty": "Medium",
+    "aggregate": {
+      "enum": 7.2,
+      "real": 6.6,
+      "cve": 5.1,
+      "custom": 4.9,
+      "ctf": 3.4
+    }
+  },
+  "452": {
+    "name": "Timelapse",
+    "os": "Windows",
+    "difficulty": "Easy",
+    "aggregate": {
+      "enum": 6,
+      "real": 5.4,
+      "cve": 4.6,
+      "custom": 5.4,
+      "ctf": 4.6
+    }
+  },
+  "148": {
+    "name": "Active",
+    "os": "Windows",
+    "difficulty": "Easy",
+    "aggregate": {
+      "enum": 5.9,
+      "real": 5.9,
+      "cve": 5.4,
+      "custom": 4.6,
+      "ctf": 4.1
+    }
+  },
+  "537": {
+    "name": "Busqueda",
+    "os": "Linux",
+    "difficulty": "Easy",
+    "aggregate": {
+      "enum": 5.5,
+      "real": 4.9,
+      "cve": 5.2,
+      "custom": 4.8,
+      "ctf": 5.1
+    }
+  },
+  "519": {
+    "name": "Soccer",
+    "os": "Linux",
+    "difficulty": "Easy",
+    "aggregate": {
+      "enum": 5.7,
+      "real": 4.9,
+      "cve": 4.9,
+      "custom": 5.1,
+      "ctf": 5.1
+    }
+  },
+  "547": {
+    "name": "TwoMillion",
+    "os": "Linux",
+    "difficulty": "Easy",
+    "aggregate": {
+      "enum": 6,
+      "real": 5.8,
+      "cve": 6,
+      "custom": 4,
+      "ctf": 4.2
+    }
+  },
+  "2": {
+    "name": "Legacy",
+    "os": "Windows",
+    "difficulty": "Easy",
+    "aggregate": {
+      "enum": 3.9,
+      "real": 4,
+      "cve": 6.1,
+      "custom": 3.9,
+      "ctf": 6
+    }
+  },
+  "1": {
+    "name": "Lame",
+    "os": "Linux",
+    "difficulty": "Easy",
+    "aggregate": {
+      "enum": 4.3,
+      "real": 3.8,
+      "cve": 5.5,
+      "custom": 4.5,
+      "ctf": 6.2
+    }
+  },
+  "543": {
+    "name": "PC",
+    "os": "Linux",
+    "difficulty": "Easy",
+    "aggregate": {
+      "enum": 5.5,
+      "real": 4.9,
+      "cve": 5.2,
+      "custom": 4.8,
+      "ctf": 5.1
+    }
+  },
+  "351": {
+    "name": "Cap",
+    "os": "Linux",
+    "difficulty": "Easy",
+    "aggregate": {
+      "enum": 4.8,
+      "real": 4.1,
+      "cve": 4.6,
+      "custom": 5.4,
+      "ctf": 5.9
+    }
+  },
+  "191": {
+    "name": "xorxorxor",
+    "os": "Linux",
+    "difficulty": "Insane",
+    "aggregate": {
+      "enum": 7.9,
+      "real": 8.1,
+      "cve": 5,
+      "custom": 5,
+      "ctf": 1.9
+    }
+  },
+  "556": {
+    "name": "Keeper",
+    "os": "Linux",
+    "difficulty": "Easy",
+    "aggregate": {
+      "enum": 4.8,
+      "real": 4.6,
+      "cve": 5.2,
+      "custom": 4.8,
+      "ctf": 5.4
+    }
   }
 }
