@@ -24,43 +24,6 @@ jobs:
           mkdir -p static/htb
           echo "$RESP" > static/htb/profile.json
 
-      - name: Fetch avatar image
-        continue-on-error: true
-        run: |
-          if [ -f static/htb/avatar.png ]; then
-            echo "Avatar already exists, skipping download"
-          else
-            echo "No avatar found, downloading..."
-            AVATAR=$(python3 -c "
-          import json
-          d = json.load(open('static/htb/profile.json'))
-          p = d.get('profile', {})
-          av = p.get('avatar') or p.get('avatar_url') or ''
-          print(av)
-            " 2>/dev/null || echo "")
-            echo "Avatar URL: $AVATAR"
-            if [ -n "$AVATAR" ]; then
-              if [[ "$AVATAR" == http* ]]; then
-                FULL_URL="$AVATAR"
-              else
-                FULL_URL="https://labs.hackthebox.com${AVATAR}"
-              fi
-              mkdir -p static/htb
-              HTTP_CODE=$(curl -s -L -o static/htb/avatar.png -w "%{http_code}" \
-                -H "User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36" \
-                "$FULL_URL")
-              echo "HTTP status: $HTTP_CODE"
-              if [ "$HTTP_CODE" = "200" ]; then
-                echo "Avatar downloaded OK"
-              else
-                echo "Avatar failed with HTTP $HTTP_CODE"
-                rm -f static/htb/avatar.png
-              fi
-            else
-              echo "No avatar URL found"
-            fi
-          fi
-
       - name: Fetch HTB activity (all pages)
         run: |
           python3 - << 'EOF'
