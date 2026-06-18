@@ -51,14 +51,21 @@ jobs:
           fi
 
       - name: Fetch HTB activity
+        continue-on-error: true
         run: |
-          curl -sf \
+          RESP=$(curl -s \
             -H "Authorization: Bearer ${{ secrets.HTB_TOKEN }}" \
             -H "Accept: application/json" \
             -H "User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36" \
             -H "Referer: https://app.hackthebox.com/" \
-            "https://labs.hackthebox.com/api/v4/user/profile/activity/1448104" \
-            -o static/htb/activity.json
+            "https://labs.hackthebox.com/api/v5/user/profile/activity/1448104")
+          echo "Activity response: $RESP"
+          if echo "$RESP" | python3 -c "import sys,json; d=json.load(sys.stdin); sys.exit(0 if 'message' not in d else 1)" 2>/dev/null; then
+            echo "$RESP" > static/htb/activity.json
+            echo "Activity saved"
+          else
+            echo "Activity endpoint returned an error, skipping save"
+          fi
 
       - name: Fetch HTB graph
         continue-on-error: true
