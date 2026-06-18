@@ -16,8 +16,8 @@
   },
   "season": {
     "league": "Silver",
-    "rank": 4233,
-    "total_ranks": 9963,
+    "rank": 4234,
+    "total_ranks": 9966,
     "total_season_points": 155,
     "next_rank": "Ruby",
     "flags_obtained": 6,
@@ -39,11 +39,31 @@
       "difficulty": "Medium"
     },
     {
+      "id": 909,
+      "name": "Checkpoint",
+      "type": "user",
+      "points": 15,
+      "ownDate": "2026-06-15T18:15:24.000Z",
+      "avatar": "https://htb-mp-prod-public-storage.s3.eu-central-1.amazonaws.com/avatars/d90d9ba3228fb458485c03a1b4c2f6e5.png",
+      "os": "Windows",
+      "difficulty": "Medium"
+    },
+    {
       "id": 548,
       "name": "Sandworm",
       "type": "root",
       "points": 0,
       "ownDate": "2026-06-12T18:55:23.000Z",
+      "avatar": "https://htb-mp-prod-public-storage.s3.eu-central-1.amazonaws.com/avatars/93c53cc1fc0284e5d9d74a565a8b9bf0.png",
+      "os": "Linux",
+      "difficulty": "Medium"
+    },
+    {
+      "id": 548,
+      "name": "Sandworm",
+      "type": "user",
+      "points": 0,
+      "ownDate": "2026-06-12T18:04:41.000Z",
       "avatar": "https://htb-mp-prod-public-storage.s3.eu-central-1.amazonaws.com/avatars/93c53cc1fc0284e5d9d74a565a8b9bf0.png",
       "os": "Linux",
       "difficulty": "Medium"
@@ -59,11 +79,31 @@
       "difficulty": "Medium"
     },
     {
+      "id": 903,
+      "name": "DevHub",
+      "type": "user",
+      "points": 15,
+      "ownDate": "2026-06-10T23:45:53.000Z",
+      "avatar": "https://htb-mp-prod-public-storage.s3.eu-central-1.amazonaws.com/avatars/8e821c7bbdb90d8520bb597edae70080.png",
+      "os": "Linux",
+      "difficulty": "Medium"
+    },
+    {
       "id": 906,
       "name": "Connected",
       "type": "root",
       "points": 20,
       "ownDate": "2026-06-08T15:05:35.000Z",
+      "avatar": "https://htb-mp-prod-public-storage.s3.eu-central-1.amazonaws.com/avatars/5f828febf436aa997dff714a184614fe.png",
+      "os": "Linux",
+      "difficulty": "Easy"
+    },
+    {
+      "id": 906,
+      "name": "Connected",
+      "type": "user",
+      "points": 10,
+      "ownDate": "2026-06-08T14:32:39.000Z",
       "avatar": "https://htb-mp-prod-public-storage.s3.eu-central-1.amazonaws.com/avatars/5f828febf436aa997dff714a184614fe.png",
       "os": "Linux",
       "difficulty": "Easy"
@@ -79,11 +119,31 @@
       "difficulty": "Easy"
     },
     {
+      "id": 900,
+      "name": "Reactor",
+      "type": "user",
+      "points": 10,
+      "ownDate": "2026-05-23T20:01:09.000Z",
+      "avatar": "https://htb-mp-prod-public-storage.s3.eu-central-1.amazonaws.com/avatars/56868ca419111fc0721393a2ffa0cefe.png",
+      "os": "Linux",
+      "difficulty": "Easy"
+    },
+    {
       "id": 510,
       "name": "Flight",
       "type": "root",
       "points": 0,
       "ownDate": "2026-05-22T23:52:32.000Z",
+      "avatar": "https://htb-mp-prod-public-storage.s3.eu-central-1.amazonaws.com/avatars/a7af9035e5089332dfbfeb328d663f3e.png",
+      "os": "Windows",
+      "difficulty": "Hard"
+    },
+    {
+      "id": 510,
+      "name": "Flight",
+      "type": "user",
+      "points": 0,
+      "ownDate": "2026-05-22T23:09:51.000Z",
       "avatar": "https://htb-mp-prod-public-storage.s3.eu-central-1.amazonaws.com/avatars/a7af9035e5089332dfbfeb328d663f3e.png",
       "os": "Windows",
       "difficulty": "Hard"
@@ -99,11 +159,31 @@
       "difficulty": "Easy"
     },
     {
+      "id": 559,
+      "name": "CozyHosting",
+      "type": "user",
+      "points": 0,
+      "ownDate": "2026-05-22T18:21:32.000Z",
+      "avatar": "https://htb-mp-prod-public-storage.s3.eu-central-1.amazonaws.com/avatars/eaed7cd01e84ef5c6ec7d949d1d61110.png",
+      "os": "Linux",
+      "difficulty": "Easy"
+    },
+    {
       "id": 897,
       "name": "SmartHire",
       "type": "root",
       "points": 30,
       "ownDate": "2026-05-22T17:02:52.000Z",
+      "avatar": "https://htb-mp-prod-public-storage.s3.eu-central-1.amazonaws.com/avatars/26260a4f7f1e95d188a99210fb2ae693.png",
+      "os": "Linux",
+      "difficulty": "Medium"
+    },
+    {
+      "id": 897,
+      "name": "SmartHire",
+      "type": "user",
+      "points": 15,
+      "ownDate": "2026-05-21T18:01:05.000Z",
       "avatar": "https://htb-mp-prod-public-storage.s3.eu-central-1.amazonaws.com/avatars/26260a4f7f1e95d188a99210fb2ae693.png",
       "os": "Linux",
       "difficulty": "Medium"
@@ -119,6 +199,16 @@
       "difficulty": "Medium"
     },
     {
+      "id": 553,
+      "name": "Authority",
+      "type": "user",
+      "points": 0,
+      "ownDate": "2026-05-13T23:27:00.000Z",
+      "avatar": "https://htb-mp-prod-public-storage.s3.eu-central-1.amazonaws.com/avatars/e6257bbacb2ddd56f5703bb61eadd8cb.png",
+      "os": "Windows",
+      "difficulty": "Medium"
+    },
+    {
       "id": 894,
       "name": "Helix",
       "type": "user",
@@ -127,6 +217,216 @@
       "avatar": "https://htb-mp-prod-public-storage.s3.eu-central-1.amazonaws.com/avatars/9ef7dfc0282a2ed0dfd37bc16fd15bb5.png",
       "os": "Linux",
       "difficulty": "Medium"
+    },
+    {
+      "id": 642,
+      "name": "EscapeTwo",
+      "type": "root",
+      "points": 0,
+      "ownDate": "2026-05-13T18:40:06.000Z",
+      "avatar": "https://htb-mp-prod-public-storage.s3.eu-central-1.amazonaws.com/avatars/d5fcf2425893a73cf137284e2de580e1.png",
+      "os": "Windows",
+      "difficulty": "Easy"
+    },
+    {
+      "id": 642,
+      "name": "EscapeTwo",
+      "type": "user",
+      "points": 0,
+      "ownDate": "2026-05-13T17:29:51.000Z",
+      "avatar": "https://htb-mp-prod-public-storage.s3.eu-central-1.amazonaws.com/avatars/d5fcf2425893a73cf137284e2de580e1.png",
+      "os": "Windows",
+      "difficulty": "Easy"
+    },
+    {
+      "id": 163,
+      "name": "Irked",
+      "type": "root",
+      "points": 0,
+      "ownDate": "2026-05-11T19:22:11.000Z",
+      "avatar": "https://htb-mp-prod-public-storage.s3.eu-central-1.amazonaws.com/avatars/5fb846e75cf0db0c4b27e2dc64a9bf82.png",
+      "os": "Linux",
+      "difficulty": "Easy"
+    },
+    {
+      "id": 163,
+      "name": "Irked",
+      "type": "user",
+      "points": 0,
+      "ownDate": "2026-05-11T19:13:55.000Z",
+      "avatar": "https://htb-mp-prod-public-storage.s3.eu-central-1.amazonaws.com/avatars/5fb846e75cf0db0c4b27e2dc64a9bf82.png",
+      "os": "Linux",
+      "difficulty": "Easy"
+    },
+    {
+      "id": 569,
+      "name": "Analytics",
+      "type": "root",
+      "points": 0,
+      "ownDate": "2026-05-11T16:14:03.000Z",
+      "avatar": "https://htb-mp-prod-public-storage.s3.eu-central-1.amazonaws.com/avatars/f86fcf4c1cfcc690b43f43e100f89718.png",
+      "os": "Linux",
+      "difficulty": "Easy"
+    },
+    {
+      "id": 569,
+      "name": "Analytics",
+      "type": "user",
+      "points": 0,
+      "ownDate": "2026-05-11T16:11:07.000Z",
+      "avatar": "https://htb-mp-prod-public-storage.s3.eu-central-1.amazonaws.com/avatars/f86fcf4c1cfcc690b43f43e100f89718.png",
+      "os": "Linux",
+      "difficulty": "Easy"
+    },
+    {
+      "id": 203,
+      "name": "Networked",
+      "type": "root",
+      "points": 0,
+      "ownDate": "2026-05-06T18:34:31.000Z",
+      "avatar": "https://htb-mp-prod-public-storage.s3.eu-central-1.amazonaws.com/avatars/0b286019523dcd78cf03d3a3472a3792.png",
+      "os": "Linux",
+      "difficulty": "Easy"
+    },
+    {
+      "id": 203,
+      "name": "Networked",
+      "type": "user",
+      "points": 0,
+      "ownDate": "2026-05-06T18:33:07.000Z",
+      "avatar": "https://htb-mp-prod-public-storage.s3.eu-central-1.amazonaws.com/avatars/0b286019523dcd78cf03d3a3472a3792.png",
+      "os": "Linux",
+      "difficulty": "Easy"
+    },
+    {
+      "id": 684,
+      "name": "Editor",
+      "type": "root",
+      "points": 0,
+      "ownDate": "2026-05-06T17:20:22.000Z",
+      "avatar": "https://htb-mp-prod-public-storage.s3.eu-central-1.amazonaws.com/avatars/ba9dec0d022d3c3b6a96aa5dba4772c7.png",
+      "os": "Linux",
+      "difficulty": "Easy"
+    },
+    {
+      "id": 684,
+      "name": "Editor",
+      "type": "user",
+      "points": 0,
+      "ownDate": "2026-05-06T16:43:08.000Z",
+      "avatar": "https://htb-mp-prod-public-storage.s3.eu-central-1.amazonaws.com/avatars/ba9dec0d022d3c3b6a96aa5dba4772c7.png",
+      "os": "Linux",
+      "difficulty": "Easy"
+    },
+    {
+      "id": 673,
+      "name": "Data",
+      "type": "root",
+      "points": 0,
+      "ownDate": "2026-05-06T15:27:34.000Z",
+      "avatar": "https://htb-mp-prod-public-storage.s3.eu-central-1.amazonaws.com/avatars/cc01a4bee72ca14c1849f430b301fd3e.png",
+      "os": "Linux",
+      "difficulty": "Easy"
+    },
+    {
+      "id": 673,
+      "name": "Data",
+      "type": "user",
+      "points": 0,
+      "ownDate": "2026-05-06T14:49:56.000Z",
+      "avatar": "https://htb-mp-prod-public-storage.s3.eu-central-1.amazonaws.com/avatars/cc01a4bee72ca14c1849f430b301fd3e.png",
+      "os": "Linux",
+      "difficulty": "Easy"
+    },
+    {
+      "id": 118,
+      "name": "Bashed",
+      "type": "root",
+      "points": 0,
+      "ownDate": "2026-05-04T19:06:18.000Z",
+      "avatar": "https://htb-mp-prod-public-storage.s3.eu-central-1.amazonaws.com/avatars/0f058b73659ca043de9f5240abd651ca.png",
+      "os": "Linux",
+      "difficulty": "Easy"
+    },
+    {
+      "id": 223,
+      "name": "Monteverde",
+      "type": "root",
+      "points": 0,
+      "ownDate": "2026-05-04T18:09:00.000Z",
+      "avatar": "https://htb-mp-prod-public-storage.s3.eu-central-1.amazonaws.com/avatars/00ceebe5dbef1106ce4390365cd787b4.png",
+      "os": "Windows",
+      "difficulty": "Medium"
+    },
+    {
+      "id": 9,
+      "name": "Arctic",
+      "type": "root",
+      "points": 0,
+      "ownDate": "2026-05-04T16:32:02.000Z",
+      "avatar": "https://htb-mp-prod-public-storage.s3.eu-central-1.amazonaws.com/avatars/0d6275efbd5e48fcdc96e61b9724ae5e.png",
+      "os": "Windows",
+      "difficulty": "Easy"
+    },
+    {
+      "id": 9,
+      "name": "Arctic",
+      "type": "user",
+      "points": 0,
+      "ownDate": "2026-05-04T16:13:33.000Z",
+      "avatar": "https://htb-mp-prod-public-storage.s3.eu-central-1.amazonaws.com/avatars/0d6275efbd5e48fcdc96e61b9724ae5e.png",
+      "os": "Windows",
+      "difficulty": "Easy"
+    },
+    {
+      "id": 156,
+      "name": "Access",
+      "type": "root",
+      "points": 0,
+      "ownDate": "2026-05-04T15:42:42.000Z",
+      "avatar": "https://htb-mp-prod-public-storage.s3.eu-central-1.amazonaws.com/avatars/adef7ad3d015a1fbc5235d5a201ca7d1.png",
+      "os": "Windows",
+      "difficulty": "Easy"
+    },
+    {
+      "id": 156,
+      "name": "Access",
+      "type": "user",
+      "points": 0,
+      "ownDate": "2026-05-04T15:16:33.000Z",
+      "avatar": "https://htb-mp-prod-public-storage.s3.eu-central-1.amazonaws.com/avatars/adef7ad3d015a1fbc5235d5a201ca7d1.png",
+      "os": "Windows",
+      "difficulty": "Easy"
+    },
+    {
+      "id": 223,
+      "name": "Monteverde",
+      "type": "user",
+      "points": 0,
+      "ownDate": "2026-03-30T16:11:57.000Z",
+      "avatar": "https://htb-mp-prod-public-storage.s3.eu-central-1.amazonaws.com/avatars/00ceebe5dbef1106ce4390365cd787b4.png",
+      "os": "Windows",
+      "difficulty": "Medium"
+    },
+    {
+      "id": 118,
+      "name": "Bashed",
+      "type": "user",
+      "points": 0,
+      "ownDate": "2026-03-24T15:43:26.000Z",
+      "avatar": "https://htb-mp-prod-public-storage.s3.eu-central-1.amazonaws.com/avatars/0f058b73659ca043de9f5240abd651ca.png",
+      "os": "Linux",
+      "difficulty": "Easy"
+    },
+    {
+      "id": 156,
+      "name": "Canvas",
+      "type": "challenge",
+      "points": 0,
+      "ownDate": "2023-09-11T18:07:47.000Z",
+      "avatar": "https://htb-mp-prod-public-storage.s3.eu-central-1.amazonaws.com/challenge_categories/1679091c5a880faf6fb5e6087eb1b2dc.svg",
+      "os": "Windows",
+      "difficulty": "Easy"
     }
   ],
   "skills": {
