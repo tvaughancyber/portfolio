@@ -397,6 +397,21 @@
 
   .pwn-item:last-child { border-bottom: none; }
 
+  .pwn-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex: 1;
+    min-width: 0;
+  }
+
+  .pwn-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+  }
+
   .pwn-avatar {
     width: 28px;
     height: 28px;
@@ -433,7 +448,6 @@
     font-size: 0.82rem;
     font-weight: 600;
     color: var(--text);
-    flex: 1;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -865,11 +879,15 @@
       return `
         <li class="pwn-item">
           <img class="pwn-avatar" src="${esc(item.avatar||'')}" alt="${esc(item.name)}" loading="lazy" onerror="this.style.display='none'"/>
-          <span class="pwn-name">${esc(item.name)}</span>
-          <span class="pwn-badges">${badges}</span>
-          ${osTag}${diffTag}
-          ${ptsTag}
-          <span class="pwn-time">${relTime(item.ownDate)}</span>
+          <span class="pwn-left">
+            <span class="pwn-name">${esc(item.name)}</span>
+            <span class="pwn-badges">${badges}</span>
+          </span>
+          <span class="pwn-right">
+            ${osTag}${diffTag}
+            ${ptsTag}
+            <span class="pwn-time">${relTime(item.ownDate)}</span>
+          </span>
         </li>`;
     }).join("");
   }
