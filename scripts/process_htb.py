@@ -81,14 +81,18 @@ def main():
         unique_boxes = list(seen.values())
 
         # Recent activity feed (last 10 unique boxes)
+        # Cross-reference matrices for os + difficulty if available
+        mat = matrices or {}
         out["recent"] = [
             {
-                "id":      b["id"],
-                "name":    b["name"],
-                "type":    b["type"],
-                "points":  b["points"],
-                "ownDate": b["ownDate"],
-                "avatar":  b["avatar"],
+                "id":         b["id"],
+                "name":       b["name"],
+                "type":       b["type"],
+                "points":     b["points"],
+                "ownDate":    b["ownDate"],
+                "avatar":     b["avatar"],
+                "os":         mat.get(str(b["id"]), {}).get("os", None),
+                "difficulty": mat.get(str(b["id"]), {}).get("difficulty", None),
             }
             for b in unique_boxes[:10]
         ]

@@ -21,6 +21,7 @@ jobs:
             -H "Referer: https://app.hackthebox.com/" \
             "https://labs.hackthebox.com/api/v4/user/profile/basic/1448104")
           echo "Profile response: $RESP"
+          mkdir -p static/htb
           echo "$RESP" > static/htb/profile.json
 
       - name: Fetch avatar image
@@ -29,19 +30,22 @@ jobs:
           AVATAR=$(python3 -c "
           import json
           d = json.load(open('static/htb/profile.json'))
-          for path in [['profile','avatar'], ['profile','avatar_url'], ['data','avatar'], ['avatar']]:
-              try:
-                  v = d
-                  for k in path: v = v[k]
-                  print(v)
-                  break
-              except: pass
+          p = d.get('profile', {})
+          # Try avatar field - may be full URL or relative path
+          av = p.get('avatar') or p.get('avatar_url') or ''
+          print(av)
           " 2>/dev/null || echo "")
-          echo "Avatar path: $AVATAR"
+          echo "Avatar URL: $AVATAR"
           if [ -n "$AVATAR" ]; then
+            # Handle both full URLs and relative paths
+            if [[ "$AVATAR" == http* ]]; then
+              FULL_URL="$AVATAR"
+            else
+              FULL_URL="https://labs.hackthebox.com${AVATAR}"
+            fi
             curl -sf \
               -H "User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36" \
-              "https://labs.hackthebox.com${AVATAR}" \
+              "$FULL_URL" \
               -o static/htb/avatar.png && echo "Avatar OK" || echo "Avatar curl failed"
           else
             echo "No avatar URL found"
@@ -121,19 +125,26 @@ jobs:
               "Referer": "https://app.hackthebox.com/",
           }
 
-          DIFFICULTY_MAP = {
-              range(0,  20):  "Easy",
-              range(20, 40):  "Easy",
-              range(40, 60):  "Medium",
-              range(60, 80):  "Hard",
-              range(80, 101): "Insane",
-          }
-
-          def get_difficulty(score):
-              for r, label in DIFFICULTY_MAP.items():
-                  if score in r:
-                      return label
-              return "Medium"
+          def fetch_with_retry(url, retries=3, backoff=5):
+              for attempt in range(retries):
+                  try:
+                      req = urllib.request.Request(url, headers=HEADERS)
+                      with urllib.request.urlopen(req, timeout=15) as resp:
+                          return json.loads(resp.read())
+                  except urllib.error.HTTPError as e:
+                      if e.code == 429:
+                          wait = backoff * (2 ** attempt)
+                          print(f"  429 rate limit, waiting {wait}s...")
+                          time.sleep(wait)
+                      elif e.code == 404:
+                          return None
+                      else:
+                          print(f"  HTTP {e.code}, skipping")
+                          return None
+                  except Exception as e:
+                      print(f"  Error: {e}, retrying...")
+                      time.sleep(backoff)
+              return None
 
           # Load activity and deduplicate by machine id
           with open("static/htb/activity.json") as f:
@@ -147,37 +158,53 @@ jobs:
 
           print(f"Unique machines: {len(seen)}")
 
-          matrices = {}
+          # Load existing matrices to avoid re-fetching
+          existing = {}
+          if os.path.exists("static/htb/matrices.json"):
+              with open("static/htb/matrices.json") as f:
+                  existing = json.load(f)
+              print(f"Loaded {len(existing)} existing matrices")
+
+          matrices = dict(existing)
+
           for mid, item in seen.items():
-              url = f"https://labs.hackthebox.com/api/v4/machine/graph/matrix/{mid}"
-              try:
-                  req = urllib.request.Request(url, headers=HEADERS)
-                  with urllib.request.urlopen(req, timeout=10) as resp:
-                      data = json.loads(resp.read())
+              if str(mid) in matrices:
+                  print(f"Skip (cached): {item['name']} ({mid})")
+                  continue
 
-                  agg = data.get("info", {}).get("aggregate")
-                  if agg and any(v > 0 for v in agg.values()):
-                      # Also fetch machine profile for OS and difficulty
-                      prof_url = f"https://labs.hackthebox.com/api/v4/machine/profile/{mid}"
-                      req2 = urllib.request.Request(prof_url, headers=HEADERS)
-                      with urllib.request.urlopen(req2, timeout=10) as resp2:
-                          prof = json.loads(resp2.read())
+              print(f"Fetching: {item['name']} ({mid})")
 
-                      info = prof.get("info", {})
-                      matrices[str(mid)] = {
-                          "name":       item["name"],
-                          "os":         info.get("os", "Linux"),
-                          "difficulty": info.get("difficultyText", "Medium"),
-                          "aggregate":  agg,
-                      }
-                      print(f"OK: {item['name']} ({mid})")
-                  else:
-                      print(f"No matrix data: {item['name']} ({mid}) - likely active box")
+              # Fetch matrix
+              matrix_data = fetch_with_retry(
+                  f"https://labs.hackthebox.com/api/v4/machine/graph/matrix/{mid}"
+              )
+              time.sleep(1.5)
 
-              except Exception as e:
-                  print(f"Error fetching {item['name']} ({mid}): {e}")
+              if not matrix_data:
+                  continue
 
-              time.sleep(0.3)  # be polite to the API
+              agg = matrix_data.get("info", {}).get("aggregate")
+              if not agg or not any(v > 0 for v in agg.values()):
+                  print(f"  No matrix data (likely active box)")
+                  continue
+
+              # Fetch machine profile for OS and difficulty
+              prof_data = fetch_with_retry(
+                  f"https://labs.hackthebox.com/api/v4/machine/profile/{mid}"
+              )
+              time.sleep(1.5)
+
+              if not prof_data:
+                  continue
+
+              info = prof_data.get("info", {})
+              matrices[str(mid)] = {
+                  "name":       item["name"],
+                  "os":         info.get("os", "Linux"),
+                  "difficulty": info.get("difficultyText", "Medium"),
+                  "aggregate":  agg,
+              }
+              print(f"  OK: {item['name']} - {info.get('os')} {info.get('difficultyText')}")
 
           print(f"\nMatrices collected: {len(matrices)}")
           os.makedirs("static/htb", exist_ok=True)
