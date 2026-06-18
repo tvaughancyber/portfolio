@@ -71,7 +71,7 @@ def main():
     if activity:
         items = activity.get("data", [])
 
-        # Deduplicate by machine id (keep one entry per box, prefer root)
+        # Deduplicate by machine id for skill/OS/diff calculations (prefer root)
         seen = {}
         for item in items:
             mid = item["id"]
@@ -80,9 +80,11 @@ def main():
 
         unique_boxes = list(seen.values())
 
-        # Recent activity feed (last 10 unique boxes)
-        # Cross-reference matrices for os + difficulty if available
+        # Recent activity: pass ALL entries (user + root) for last 20 unique boxes
+        # JS will group them into one row per box
         mat = matrices or {}
+        recent_ids = [b["id"] for b in unique_boxes[:20]]
+        recent_items = [i for i in items if i["id"] in recent_ids]
         out["recent"] = [
             {
                 "id":         b["id"],
@@ -94,7 +96,7 @@ def main():
                 "os":         mat.get(str(b["id"]), {}).get("os", None),
                 "difficulty": mat.get(str(b["id"]), {}).get("difficulty", None),
             }
-            for b in unique_boxes[:10]
+            for b in recent_items
         ]
 
     # --- Matrices: skill radar + OS + difficulty ---

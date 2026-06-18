@@ -418,7 +418,13 @@
     flex-shrink: 0;
   }
 
-  .pwn-badge.user { background: rgba(159,239,0,0.12);  color: var(--htb-green); }
+  .pwn-badges {
+    display: flex;
+    gap: 4px;
+    flex-shrink: 0;
+  }
+
+  .pwn-badge.user { background: rgba(56,189,248,0.12); color: var(--user-own); }
   .pwn-badge.root { background: rgba(239,68,68,0.12);  color: var(--blood); }
 
   .pwn-name {
@@ -507,7 +513,7 @@
 
   <!-- Header -->
   <div class="htb-header">
-    <img class="htb-avatar" id="htbAvatar" src="" alt="HTB Avatar" onerror="this.style.display='none'" />
+    <img class="htb-avatar" id="htbAvatar" src="" alt="HTB Avatar" crossorigin="anonymous" onerror="this.style.visibility='hidden'" />
     <div class="htb-header-left">
       <h2 id="htbUsername">tvaughancyber</h2>
       <div class="htb-meta">
@@ -533,7 +539,7 @@
     </div>
     <div class="htb-header-stat">
       <div class="hs-label">Global Rank</div>
-      <div class="hs-value" id="statRanking">—</div>
+      <div class="hs-value" style="color:var(--htb-green)" id="statRanking">—</div>
       <div class="hs-sub" id="statNextRank"></div>
     </div>
   </div>
@@ -808,7 +814,6 @@
 
   // ── activity feed ────────────────────────────────────────
   const DIFF_COLORS_ACT = { Easy:"#22c55e", Medium:"#f59e0b", Hard:"#ef4444", Insane:"#a855f7" };
-  const OS_ICONS = { Linux:"Linux", Windows:"Windows", Other:"Other" };
 
   function renderActivity(recent) {
     const list = document.getElementById("pwnList");
@@ -816,21 +821,52 @@
       list.innerHTML = '<li class="htb-state">No activity found.</li>';
       return;
     }
-    list.innerHTML = recent.map(item => {
-      const isRoot    = item.type === "root";
-      const pts       = item.points ? `<span>+${item.points}</span> pts` : "";
+
+    // Group by machine id so user+root appear on one row
+    const grouped = {};
+    const order = [];
+    for (const item of recent) {
+      const id = item.id;
+      if (!grouped[id]) {
+        grouped[id] = { ...item, hasUser: false, hasRoot: false, userPts: 0, rootPts: 0 };
+        order.push(id);
+      }
+      if (item.type === "user") {
+        grouped[id].hasUser = true;
+        grouped[id].userPts = item.points || 0;
+        // use the most recent date
+        if (!grouped[id].ownDate || item.ownDate > grouped[id].ownDate) grouped[id].ownDate = item.ownDate;
+      }
+      if (item.type === "root") {
+        grouped[id].hasRoot = true;
+        grouped[id].rootPts = item.points || 0;
+        if (!grouped[id].ownDate || item.ownDate > grouped[id].ownDate) grouped[id].ownDate = item.ownDate;
+      }
+    }
+
+    list.innerHTML = order.map(id => {
+      const item = grouped[id];
       const diff      = item.difficulty || "";
       const diffColor = DIFF_COLORS_ACT[diff] || "#64748b";
-      const osIcon    = OS_ICONS[item.os] || "";
       const diffTag   = diff ? `<span class="pwn-diff" style="color:${diffColor}">${diff}</span>` : "";
       const osTag     = item.os ? `<span class="pwn-os-icon">${esc(item.os)}</span>` : "";
+
+      // Build badge(s)
+      let badges = "";
+      if (item.hasUser) badges += `<span class="pwn-badge user">USER</span>`;
+      if (item.hasRoot) badges += `<span class="pwn-badge root">ROOT</span>`;
+
+      // Total points
+      const totalPts = (item.userPts || 0) + (item.rootPts || 0);
+      const ptsTag = totalPts ? `<span class="pwn-pts"><span>+${totalPts}</span> pts</span>` : "";
+
       return `
         <li class="pwn-item">
           <img class="pwn-avatar" src="${esc(item.avatar||'')}" alt="${esc(item.name)}" loading="lazy" onerror="this.style.display='none'"/>
-          <span class="pwn-badge ${isRoot?'root':'user'}">${isRoot?'ROOT':'USER'}</span>
+          <span class="pwn-badges">${badges}</span>
           <span class="pwn-name">${esc(item.name)}</span>
           ${osTag}${diffTag}
-          <span class="pwn-pts">${pts}</span>
+          ${ptsTag}
           <span class="pwn-time">${relTime(item.ownDate)}</span>
         </li>`;
     }).join("");
@@ -872,7 +908,7 @@
       // profile
       const p = data.profile || {};
       const avatar = document.getElementById("htbAvatar");
-      if (avatar && p.avatar) avatar.src = p.avatar;
+      if (avatar) avatar.src = "/htb/avatar.png";
       set("htbUsername", p.name || "tvaughancyber");
       set("htbRankPill", p.rank || "Hacker");
       set("statUserOwns",   p.user_owns ?? "—");
