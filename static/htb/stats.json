@@ -3,31 +3,41 @@
     "name": "tvaughancyber",
     "rank": "Hacker",
     "ranking": 850,
-    "points": 148,
-    "user_owns": 80,
+    "points": 160,
+    "user_owns": 81,
     "system_owns": 71,
     "user_bloods": 0,
     "system_bloods": 0,
     "respects": 4,
     "avatar": "https://htb-sso-prod-public-storage.s3.eu-central-1.amazonaws.com/users/25e1337c-8578-43a2-9328-69e873e0aa3a-avatar.png",
     "country_name": "United States",
-    "current_rank_progress": 60.4,
+    "current_rank_progress": 64.48,
     "next_rank": "Pro Hacker"
   },
   "season": {
     "league": "Silver",
-    "rank": 4457,
-    "total_ranks": 10108,
-    "total_season_points": 155,
+    "rank": 2779,
+    "total_ranks": 10113,
+    "total_season_points": 195,
     "next_rank": "Ruby",
-    "flags_obtained": 6,
+    "flags_obtained": 7,
     "flags_total": 26,
-    "flags_to_next": 2,
+    "flags_to_next": 3,
     "flags_to_next_total": 7,
-    "user_owns": 3,
+    "user_owns": 4,
     "root_owns": 3
   },
   "recent": [
+    {
+      "id": 912,
+      "name": "Nimbus",
+      "type": "user",
+      "points": 20,
+      "ownDate": "2026-06-22T20:34:44.000Z",
+      "avatar": "https://cdn.services-k8s.prod.aws.htb.systems/content/machines/avatar/a1e513f0-690d-4dc2-bd2c-946d3983d026-1780052541.png",
+      "os": "linux",
+      "difficulty": "Hard"
+    },
     {
       "id": 909,
       "name": "Checkpoint",
@@ -379,26 +389,6 @@
       "difficulty": "Easy"
     },
     {
-      "id": 156,
-      "name": "Access",
-      "type": "root",
-      "points": 0,
-      "ownDate": "2026-05-04T15:42:42.000Z",
-      "avatar": "https://cdn.services-k8s.prod.aws.htb.systems/content/machines/avatar/9e4d90d5-b5b9-4655-89a5-1169f94c9b7a.png",
-      "os": "Windows",
-      "difficulty": "Easy"
-    },
-    {
-      "id": 156,
-      "name": "Access",
-      "type": "user",
-      "points": 0,
-      "ownDate": "2026-05-04T15:16:33.000Z",
-      "avatar": "https://cdn.services-k8s.prod.aws.htb.systems/content/machines/avatar/9e4d90d5-b5b9-4655-89a5-1169f94c9b7a.png",
-      "os": "Windows",
-      "difficulty": "Easy"
-    },
-    {
       "id": 223,
       "name": "Monteverde",
       "type": "user",
@@ -417,37 +407,27 @@
       "avatar": "https://cdn.services-k8s.prod.aws.htb.systems/content/machines/avatar/9e4d90d6-f64a-49bf-9082-06f7269225c7.png",
       "os": "Linux",
       "difficulty": "Easy"
-    },
-    {
-      "id": 156,
-      "name": "Canvas",
-      "type": "challenge",
-      "points": 0,
-      "ownDate": "2023-09-11T18:07:47.000Z",
-      "avatar": "https://htb-mp-prod-public-storage.s3.eu-central-1.amazonaws.com/challenge_categories/1679091c5a880faf6fb5e6087eb1b2dc.svg",
-      "os": "Windows",
-      "difficulty": "Easy"
     }
   ],
   "skills": {
     "radar": {
-      "enum": 6.07,
-      "real": 5.76,
-      "cve": 5.7,
-      "custom": 4.3,
-      "ctf": 4.24
+      "enum": 6.1,
+      "real": 5.79,
+      "cve": 5.68,
+      "custom": 4.32,
+      "ctf": 4.21
     },
     "os": {
       "Linux": 53,
       "Windows": 26,
-      "Other": 2
+      "Other": 3
     },
     "difficulty": {
       "Easy": 59,
       "Medium": 19,
-      "Hard": 2,
+      "Hard": 3,
       "Insane": 1
     },
-    "total_boxes": 81
+    "total_boxes": 82
   }
 }

@@ -970,5 +970,17 @@
       "custom": 4.8,
       "ctf": 5.4
     }
+  },
+  "912": {
+    "name": "Nimbus",
+    "os": "linux",
+    "difficulty": "Hard",
+    "aggregate": {
+      "enum": 6.9,
+      "real": 6.9,
+      "cve": 4.9,
+      "custom": 5.1,
+      "ctf": 3.1
+    }
   }
 }
