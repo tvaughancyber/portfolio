@@ -982,5 +982,17 @@
       "custom": 5.1,
       "ctf": 3.1
     }
+  },
+  "915": {
+    "name": "Enigma",
+    "os": "Linux",
+    "difficulty": "Easy",
+    "aggregate": {
+      "enum": 6.2,
+      "real": 5.8,
+      "cve": 6.3,
+      "custom": 3.7,
+      "ctf": 4.2
+    }
   }
 }

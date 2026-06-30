@@ -3,31 +3,51 @@
     "name": "tvaughancyber",
     "rank": "Hacker",
     "ranking": 884,
-    "points": 141,
-    "user_owns": 81,
-    "system_owns": 71,
+    "points": 160,
+    "user_owns": 82,
+    "system_owns": 72,
     "user_bloods": 0,
     "system_bloods": 0,
     "respects": 4,
     "avatar": "https://htb-sso-prod-public-storage.s3.eu-central-1.amazonaws.com/users/25e1337c-8578-43a2-9328-69e873e0aa3a-avatar.png",
     "country_name": "United States",
-    "current_rank_progress": 52.24,
+    "current_rank_progress": 64.48,
     "next_rank": "Pro Hacker"
   },
   "season": {
     "league": "Silver",
-    "rank": 3491,
-    "total_ranks": 10527,
-    "total_season_points": 195,
+    "rank": 2897,
+    "total_ranks": 10558,
+    "total_season_points": 240,
     "next_rank": "Ruby",
-    "flags_obtained": 7,
+    "flags_obtained": 9,
     "flags_total": 26,
-    "flags_to_next": 3,
+    "flags_to_next": 5,
     "flags_to_next_total": 7,
-    "user_owns": 4,
-    "root_owns": 3
+    "user_owns": 5,
+    "root_owns": 4
   },
   "recent": [
+    {
+      "id": 915,
+      "name": "Enigma",
+      "type": "root",
+      "points": 20,
+      "ownDate": "2026-06-30T12:28:12.000Z",
+      "avatar": "https://cdn.services-k8s.prod.aws.htb.systems/content/machines/avatar/a1e514a2-69e8-4e79-82ab-176c3b5a26b4-1780052657.png",
+      "os": "Linux",
+      "difficulty": "Easy"
+    },
+    {
+      "id": 915,
+      "name": "Enigma",
+      "type": "user",
+      "points": 10,
+      "ownDate": "2026-06-30T12:23:29.000Z",
+      "avatar": "https://cdn.services-k8s.prod.aws.htb.systems/content/machines/avatar/a1e514a2-69e8-4e79-82ab-176c3b5a26b4-1780052657.png",
+      "os": "Linux",
+      "difficulty": "Easy"
+    },
     {
       "id": 912,
       "name": "Nimbus",
@@ -369,26 +389,6 @@
       "difficulty": "Medium"
     },
     {
-      "id": 9,
-      "name": "Arctic",
-      "type": "root",
-      "points": 0,
-      "ownDate": "2026-05-04T16:32:02.000Z",
-      "avatar": "https://cdn.services-k8s.prod.aws.htb.systems/content/machines/avatar/9e4d90d7-877b-40aa-986a-c2602cdd0702.png",
-      "os": "Windows",
-      "difficulty": "Easy"
-    },
-    {
-      "id": 9,
-      "name": "Arctic",
-      "type": "user",
-      "points": 0,
-      "ownDate": "2026-05-04T16:13:33.000Z",
-      "avatar": "https://cdn.services-k8s.prod.aws.htb.systems/content/machines/avatar/9e4d90d7-877b-40aa-986a-c2602cdd0702.png",
-      "os": "Windows",
-      "difficulty": "Easy"
-    },
-    {
       "id": 223,
       "name": "Monteverde",
       "type": "user",
@@ -413,21 +413,21 @@
     "radar": {
       "enum": 6.1,
       "real": 5.79,
-      "cve": 5.68,
-      "custom": 4.32,
+      "cve": 5.69,
+      "custom": 4.31,
       "ctf": 4.21
     },
     "os": {
-      "Linux": 53,
+      "Linux": 54,
       "Windows": 26,
       "Other": 3
     },
     "difficulty": {
-      "Easy": 59,
+      "Easy": 60,
       "Medium": 19,
       "Hard": 3,
       "Insane": 1
     },
-    "total_boxes": 82
+    "total_boxes": 83
   }
 }
