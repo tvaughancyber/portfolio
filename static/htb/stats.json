@@ -11,13 +11,13 @@
     "respects": 4,
     "avatar": "https://htb-sso-prod-public-storage.s3.eu-central-1.amazonaws.com/users/25e1337c-8578-43a2-9328-69e873e0aa3a-avatar.png",
     "country_name": "United States",
-    "current_rank_progress": 64.48,
+    "current_rank_progress": 63.92,
     "next_rank": "Pro Hacker"
   },
   "season": {
     "league": "Silver",
-    "rank": 2953,
-    "total_ranks": 10882,
+    "rank": 2958,
+    "total_ranks": 10918,
     "total_season_points": 240,
     "next_rank": "Ruby",
     "flags_obtained": 9,
