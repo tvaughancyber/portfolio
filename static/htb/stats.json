@@ -2,7 +2,7 @@
   "profile": {
     "name": "tvaughancyber",
     "rank": "Hacker",
-    "ranking": 988,
+    "ranking": 962,
     "points": 64,
     "user_owns": 82,
     "system_owns": 72,
@@ -11,13 +11,13 @@
     "respects": 4,
     "avatar": "https://htb-sso-prod-public-storage.s3.eu-central-1.amazonaws.com/users/25e1337c-8578-43a2-9328-69e873e0aa3a-avatar.png",
     "country_name": "United States",
-    "current_rank_progress": 12.76,
+    "current_rank_progress": 9.96,
     "next_rank": "Pro Hacker"
   },
   "season": {
     "league": "Silver",
-    "rank": 4252,
-    "total_ranks": 12658,
+    "rank": 4259,
+    "total_ranks": 12660,
     "total_season_points": 240,
     "next_rank": "Ruby",
     "flags_obtained": 9,
