@@ -11,7 +11,7 @@
     "respects": 5,
     "avatar": "https://htb-sso-prod-public-storage.s3.eu-central-1.amazonaws.com/users/25e1337c-8578-43a2-9328-69e873e0aa3a-avatar.png",
     "country_name": "United States",
-    "current_rank_progress": 9.16,
+    "current_rank_progress": 11.92,
     "next_rank": "Pro Hacker"
   },
   "season": {
@@ -21,8 +21,8 @@
     "total_season_points": 240,
     "next_rank": "Ruby",
     "flags_obtained": 9,
-    "flags_total": 28,
-    "flags_to_next": 4,
+    "flags_total": 26,
+    "flags_to_next": 5,
     "flags_to_next_total": 7,
     "user_owns": 5,
     "root_owns": 4
