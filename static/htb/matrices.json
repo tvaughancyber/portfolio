@@ -994,5 +994,17 @@
       "custom": 3.7,
       "ctf": 4.2
     }
+  },
+  "347": {
+    "name": "Knife",
+    "os": "Linux",
+    "difficulty": "Easy",
+    "aggregate": {
+      "enum": 4.3,
+      "real": 3.8,
+      "cve": 4.9,
+      "custom": 5.1,
+      "ctf": 6.2
+    }
   }
 }
